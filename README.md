@@ -7,14 +7,14 @@
     <p style="margin:0; font-size:18px;"><strong>IA. Automatización. Impacto.</strong></p>
     <p style="margin:8px 0 0; font-size:14px; opacity:.9;">We automate investments. We scale results. We turn time into real money.</p>
 
-    <!-- Badges -->
-    <p style="margin:14px 0 0;">
-      <img alt="AI" src="https://img.shields.io/badge/AI-Powered-111827?style=flat&logo=openai&logoColor=white">
-      <img alt="FastAPI" src="https://img.shields.io/badge/FastAPI-Backend-059669?style=flat">
-      <img alt="React" src="https://img.shields.io/badge/React-Frontend-0ea5e9?style=flat&logo=react&logoColor=white">
-      <img alt="Docker" src="https://img.shields.io/badge/Docker-Ready-2563eb?style=flat&logo=docker&logoColor=white">
-      <img alt="Blockchain" src="https://img.shields.io/badge/Blockchain-Tokenization-7c3aed?style=flat">
-    </p>
+   <!-- Badges -->
+<p style="margin:14px 0 0;">
+  <img alt="AI" src="https://img.shields.io/badge/AI-Powered-111827?style=flat&logo=openai&logoColor=white">
+  <img alt="FastAPI" src="https://img.shields.io/badge/FastAPI-Backend-059669?style=flat">
+  <img alt="React" src="https://img.shields.io/badge/React-Frontend-0ea5e9?style=flat&logo=react&logoColor=white">
+  <img alt="Docker" src="https://img.shields.io/badge/Docker-Ready-2563eb?style=flat&logo=docker&logoColor=white">
+  <img alt="Blockchain" src="https://img.shields.io/badge/Blockchain-Tokenization-7c3aed?style=flat">
+</p>
   </div>
 
   <!-- CEO -->
