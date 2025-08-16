@@ -3,6 +3,77 @@ window.MELANO_CONF = {
     // Webhook URL for form submissions (UPDATE THIS AFTER N8N DEPLOYMENT)
     webhookURL: "https://n8n.YOUR-DOMAIN.com/webhook/melano_lead",
     
+    // Stripe Configuration
+    stripe: {
+        publishableKey: "pk_test_...", // UPDATE WITH REAL STRIPE KEY
+        plans: {
+            starter: {
+                id: "price_starter_monthly",
+                name: "Starter",
+                price: 0,
+                currency: "usd",
+                interval: "month"
+            },
+            pro: {
+                id: "price_pro_monthly", 
+                name: "Pro",
+                price: 297,
+                currency: "usd",
+                interval: "month"
+            },
+            enterprise: {
+                id: "price_enterprise_monthly",
+                name: "Enterprise", 
+                price: 997,
+                currency: "usd",
+                interval: "month"
+            }
+        },
+        checkoutSuccessUrl: "https://brunomelano.com/success",
+        checkoutCancelUrl: "https://brunomelano.com/cancel"
+    },
+    
+    // Email Marketing
+    emailSequences: {
+        welcome: {
+            enabled: true,
+            delay: 0, // immediate
+            template: "welcome_series"
+        },
+        trial_ending: {
+            enabled: true,
+            delay: 25, // days before trial ends
+            template: "trial_ending"
+        },
+        conversion: {
+            enabled: true,
+            delay: 30, // days after signup
+            template: "conversion_series"
+        },
+        retention: {
+            enabled: true,
+            delay: 90, // days after signup
+            template: "retention_series"
+        }
+    },
+    
+    // Analytics & Revenue Tracking
+    analytics: {
+        revenueTracking: true,
+        conversionTracking: true,
+        cohortAnalysis: true,
+        realTimeUpdates: true,
+        dashboardRefreshInterval: 30000, // 30 seconds
+        metrics: {
+            mrr: true, // Monthly Recurring Revenue
+            arr: true, // Annual Recurring Revenue
+            ltv: true, // Customer Lifetime Value
+            cac: true, // Customer Acquisition Cost
+            churn: true, // Churn Rate
+            arpu: true // Average Revenue Per User
+        }
+    },
+    
     // Contact Information
     contact: {
         phone: "+5492235506595",

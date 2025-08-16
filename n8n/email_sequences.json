@@ -1,0 +1,469 @@
+{
+  "name": "MELANO INC - Email Sequences & Onboarding",
+  "nodes": [
+    {
+      "parameters": {
+        "mode": "chooseTrigger",
+        "triggerTimes": {
+          "triggerAtHour": 9,
+          "triggerAtMinute": 0
+        }
+      },
+      "id": "schedule-trigger",
+      "name": "Daily Email Check",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "value": "public",
+          "mode": "list"
+        },
+        "table": {
+          "__rl": true,
+          "value": "email_sequences",
+          "mode": "list"
+        },
+        "filterType": "manual",
+        "matchingColumns": [
+          {
+            "column": "status",
+            "operator": "equal",
+            "value": "pending"
+          },
+          {
+            "column": "scheduled_for",
+            "operator": "<=",
+            "value": "=now()"
+          }
+        ]
+      },
+      "id": "get-pending-emails",
+      "name": "Get Pending Emails",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [460, 300],
+      "credentials": {
+        "supabaseApi": {
+          "id": "supabase-credentials",
+          "name": "MELANO Supabase"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "leftValue": "={{ $json.length }}",
+              "rightValue": "0",
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ]
+        }
+      },
+      "id": "check-emails-exist",
+      "name": "Check If Emails Exist",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [680, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Process each email in the sequence\nconst emails = $input.all()[0].json;\nconst emailTemplates = {\n  welcome_series: {\n    0: {\n      subject: '¡Bienvenido a MELANO INC! 🤖 Tu Análisis Gratuito',\n      template: `\n        <h2>¡Hola {{name}}!</h2>\n        <p>Bienvenido al futuro de la automatización empresarial.</p>\n        \n        <h3>🎯 Tu Análisis Personalizado está Listo</h3>\n        <ul>\n          <li>✅ Oportunidades de automatización identificadas</li>\n          <li>✅ ROI proyectado para tu industria</li>\n          <li>✅ Estrategia de implementación paso a paso</li>\n        </ul>\n        \n        <p><a href=\"{{cta_link}}\" style=\"background: #FFD700; color: #0F0F0F; padding: 15px 30px; text-decoration: none; border-radius: 8px; font-weight: bold;\">📊 Ver Mi Análisis GRATIS</a></p>\n        \n        <p>¿Tienes preguntas? Responde este email o contáctame directamente:</p>\n        <p>📱 WhatsApp: +5492235506595</p>\n        \n        <p>Bruno A. Melano<br>CEO & Founder | MELANO INC</p>\n      `\n    },\n    1: {\n      subject: '💡 3 Errores Costosos que Cometen el 90% de Empresas',\n      template: `\n        <h2>Hola {{name}},</h2>\n        <p>Después de analizar +500 empresas, identifiqué 3 errores que cuestan MILLONES:</p>\n        \n        <h3>❌ Error #1: Automation Parcial</h3>\n        <p>Automatizan tareas, no procesos completos. Resultado: 40% de eficiencia perdida.</p>\n        \n        <h3>❌ Error #2: Sin ROI Tracking</h3>\n        <p>Invierten en tecnología sin medir impacto real. 70% no sabe si funciona.</p>\n        \n        <h3>❌ Error #3: Implementación Sin Estrategia</h3>\n        <p>Herramientas random sin visión integral. Caos operativo garantizado.</p>\n        \n        <h3>✅ La Solución MELANO:</h3>\n        <ul>\n          <li>🤖 Automatización integral (no parcial)</li>\n          <li>📊 ROI medible en ≤30 días</li> \n          <li>🎯 Estrategia personalizada</li>\n        </ul>\n        \n        <p><a href=\"{{cta_link}}\" style=\"background: #FFD700; color: #0F0F0F; padding: 15px 30px; text-decoration: none; border-radius: 8px; font-weight: bold;\">🚀 Evitar Estos Errores</a></p>\n        \n        <p>Bruno A. Melano</p>\n      `\n    }\n  },\n  trial_ending: {\n    0: {\n      subject: '⏰ Tu Plan Starter Expira en 5 Días',\n      template: `\n        <h2>Hola {{name}},</h2>\n        <p>Tu plan Starter de MELANO INC expira en 5 días.</p>\n        \n        <h3>🎯 Lo Que Has Logrado:</h3>\n        <ul>\n          <li>📊 {{trades_completed}} trades completados</li>\n          <li>💰 {{roi_achieved}}% ROI promedio</li>\n          <li>🤖 Bot funcionando 24/7</li>\n        </ul>\n        \n        <h3>🚀 Upgrade a Pro y Obtén:</h3>\n        <ul>\n          <li>5 Bots IA simultáneos</li>\n          <li>Capital hasta $50K</li>\n          <li>Analytics en tiempo real</li>\n          <li>Soporte WhatsApp 24/7</li>\n        </ul>\n        \n        <p><strong>💥 Oferta Especial: 30% OFF tu primer mes</strong></p>\n        \n        <p><a href=\"{{upgrade_link}}\" style=\"background: #FFD700; color: #0F0F0F; padding: 15px 30px; text-decoration: none; border-radius: 8px; font-weight: bold;\">Upgrade a Pro - 30% OFF</a></p>\n        \n        <p>¿Preguntas? WhatsApp: +5492235506595</p>\n        \n        <p>Bruno A. Melano</p>\n      `\n    }\n  }\n};\n\nconst processedEmails = [];\n\nfor (const email of emails) {\n  const template = emailTemplates[email.sequence_name]?.[email.email_index];\n  if (template) {\n    processedEmails.push({\n      ...email,\n      subject: template.subject,\n      html_content: template.template,\n      template_data: {\n        name: email.user_name || 'Cliente',\n        cta_link: 'https://brunomelano.com/upgrade',\n        upgrade_link: 'https://brunomelano.com/upgrade?discount=30',\n        trades_completed: Math.floor(Math.random() * 50) + 10,\n        roi_achieved: (Math.random() * 15 + 5).toFixed(1)\n      }\n    });\n  }\n}\n\nreturn processedEmails;"
+      },
+      "id": "process-email-templates",
+      "name": "Process Email Templates",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [900, 260]
+    },
+    {
+      "parameters": {
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "method": "POST",
+        "url": "https://api.sendgrid.com/v3/mail/send",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer {{ $vars.SENDGRID_API_KEY }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "json",
+        "body": "{\n  \"personalizations\": [\n    {\n      \"to\": [\n        {\n          \"email\": \"{{ $json.user_email }}\",\n          \"name\": \"{{ $json.template_data.name }}\"\n        }\n      ],\n      \"dynamic_template_data\": {{ $json.template_data }}\n    }\n  ],\n  \"from\": {\n    \"email\": \"contacto@brunomelano.com\",\n    \"name\": \"Bruno A. Melano | MELANO INC\"\n  },\n  \"subject\": \"{{ $json.subject }}\",\n  \"content\": [\n    {\n      \"type\": \"text/html\",\n      \"value\": \"{{ $json.html_content }}\"\n    }\n  ],\n  \"tracking_settings\": {\n    \"click_tracking\": {\n      \"enable\": true\n    },\n    \"open_tracking\": {\n      \"enable\": true\n    }\n  }\n}"
+      },
+      "id": "send-email",
+      "name": "Send Email via SendGrid",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [1120, 260]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "schema": {
+          "__rl": true,
+          "value": "public",
+          "mode": "list"
+        },
+        "table": {
+          "__rl": true,
+          "value": "email_sequences",
+          "mode": "list"
+        },
+        "filterType": "manual",
+        "matchingColumns": [
+          {
+            "column": "id",
+            "operator": "equal",
+            "value": "={{ $('Process Email Templates').item.json.id }}"
+          }
+        ],
+        "columns": {
+          "mappingMode": "defineBelow",
+          "values": {
+            "status": "sent",
+            "sent_at": "=now()"
+          }
+        }
+      },
+      "id": "update-email-status",
+      "name": "Update Email Status",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [1340, 260],
+      "credentials": {
+        "supabaseApi": {
+          "id": "supabase-credentials",
+          "name": "MELANO Supabase"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "insert",
+        "schema": {
+          "__rl": true,
+          "value": "public",
+          "mode": "list"
+        },
+        "table": {
+          "__rl": true,
+          "value": "email_sequences",
+          "mode": "list"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "values": {
+            "user_id": "={{ $('Process Email Templates').item.json.user_id }}",
+            "sequence_name": "={{ $('Process Email Templates').item.json.sequence_name }}",
+            "email_index": "={{ $('Process Email Templates').item.json.email_index + 1 }}",
+            "scheduled_for": "=dateTime().plus(3, 'days').toISO()"
+          }
+        }
+      },
+      "id": "schedule-next-email",
+      "name": "Schedule Next Email",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [1340, 120],
+      "credentials": {
+        "supabaseApi": {
+          "id": "supabase-credentials",
+          "name": "MELANO Supabase"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "stripe-webhook",
+        "responseMode": "responseNode"
+      },
+      "id": "stripe-webhook",
+      "name": "Stripe Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [240, 500],
+      "webhookId": "stripe-webhook-events"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Process Stripe webhook events\nconst event = $json.body;\n\nswitch(event.type) {\n  case 'customer.subscription.created':\n  case 'customer.subscription.updated':\n    const subscription = event.data.object;\n    return {\n      event_type: event.type,\n      subscription_id: subscription.id,\n      customer_id: subscription.customer,\n      status: subscription.status,\n      current_period_start: new Date(subscription.current_period_start * 1000).toISOString(),\n      current_period_end: new Date(subscription.current_period_end * 1000).toISOString(),\n      plan_id: subscription.items.data[0].price.id,\n      amount: subscription.items.data[0].price.unit_amount / 100,\n      currency: subscription.items.data[0].price.currency\n    };\n    \n  case 'invoice.payment_succeeded':\n    const invoice = event.data.object;\n    return {\n      event_type: 'charge_succeeded',\n      customer_id: invoice.customer,\n      subscription_id: invoice.subscription,\n      amount: invoice.amount_paid / 100,\n      currency: invoice.currency,\n      stripe_event_id: event.id\n    };\n    \n  case 'customer.subscription.deleted':\n    const deletedSub = event.data.object;\n    return {\n      event_type: 'subscription_canceled',\n      subscription_id: deletedSub.id,\n      customer_id: deletedSub.customer,\n      canceled_at: new Date(deletedSub.canceled_at * 1000).toISOString()\n    };\n    \n  default:\n    return { event_type: 'ignored', original_type: event.type };\n}"
+      },
+      "id": "process-stripe-event",
+      "name": "Process Stripe Event",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [460, 500]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "leftValue": "={{ $json.event_type }}",
+              "rightValue": "ignored",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            }
+          ]
+        }
+      },
+      "id": "check-event-relevant",
+      "name": "Check If Event Relevant",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [680, 500]
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "schema": {
+          "__rl": true,
+          "value": "public",
+          "mode": "list"
+        },
+        "table": {
+          "__rl": true,
+          "value": "subscriptions",
+          "mode": "list"
+        },
+        "onConflict": "subscription_id",
+        "columns": {
+          "mappingMode": "defineBelow",
+          "values": {
+            "customer_id": "={{ $json.customer_id }}",
+            "subscription_id": "={{ $json.subscription_id }}",
+            "status": "={{ $json.status }}",
+            "current_period_start": "={{ $json.current_period_start }}",
+            "current_period_end": "={{ $json.current_period_end }}",
+            "price": "={{ $json.amount }}",
+            "currency": "={{ $json.currency }}"
+          }
+        }
+      },
+      "id": "update-subscription",
+      "name": "Update Subscription",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [900, 460],
+      "credentials": {
+        "supabaseApi": {
+          "id": "supabase-credentials",
+          "name": "MELANO Supabase"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "insert",
+        "schema": {
+          "__rl": true,
+          "value": "public",
+          "mode": "list"
+        },
+        "table": {
+          "__rl": true,
+          "value": "revenue_events",
+          "mode": "list"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "values": {
+            "subscription_id": "={{ $json.subscription_id }}",
+            "event_type": "={{ $json.event_type }}",
+            "amount": "={{ $json.amount }}",
+            "currency": "={{ $json.currency }}",
+            "stripe_event_id": "={{ $json.stripe_event_id }}"
+          }
+        }
+      },
+      "id": "log-revenue-event",
+      "name": "Log Revenue Event",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [900, 540],
+      "credentials": {
+        "supabaseApi": {
+          "id": "supabase-credentials",
+          "name": "MELANO Supabase"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{ \"received\": true }"
+      },
+      "id": "webhook-response",
+      "name": "Webhook Response",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [1120, 500]
+    }
+  ],
+  "connections": {
+    "Daily Email Check": {
+      "main": [
+        [
+          {
+            "node": "Get Pending Emails",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Pending Emails": {
+      "main": [
+        [
+          {
+            "node": "Check If Emails Exist",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check If Emails Exist": {
+      "main": [
+        [
+          {
+            "node": "Process Email Templates",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Process Email Templates": {
+      "main": [
+        [
+          {
+            "node": "Send Email via SendGrid",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Email via SendGrid": {
+      "main": [
+        [
+          {
+            "node": "Update Email Status",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Schedule Next Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Stripe Webhook": {
+      "main": [
+        [
+          {
+            "node": "Process Stripe Event",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Process Stripe Event": {
+      "main": [
+        [
+          {
+            "node": "Check If Event Relevant",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check If Event Relevant": {
+      "main": [
+        [
+          {
+            "node": "Update Subscription",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Log Revenue Event",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Subscription": {
+      "main": [
+        [
+          {
+            "node": "Webhook Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Log Revenue Event": {
+      "main": [
+        [
+          {
+            "node": "Webhook Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "id": "melano-email-sequences",
+  "tags": [
+    {
+      "createdAt": "2025-01-27T10:00:00.000Z",
+      "updatedAt": "2025-01-27T10:00:00.000Z",
+      "id": "melano-tag",
+      "name": "MELANO INC"
+    }
+  ]
+}

@@ -33,6 +33,36 @@ window.MELANO_TRANSLATIONS = {
         services: {
             title: "Unidades de Negocio",
             subtitle: "Cada sistema diseñado para maximizar ROI y minimizar intervención humana",
+            pricing: {
+                title: "Planes de Inversión",
+                starter: {
+                    title: "Starter",
+                    period: "/mes",
+                    feature1: "✅ Análisis de mercado básico",
+                    feature2: "✅ 1 Bot de trading demo", 
+                    feature3: "✅ Soporte por email",
+                    feature4: "❌ Capital limitado: $1K",
+                    cta: "Comenzar Gratis"
+                },
+                pro: {
+                    title: "Pro",
+                    period: "/mes", 
+                    feature1: "🚀 5 Bots IA simultáneos",
+                    feature2: "📊 Analytics en tiempo real",
+                    feature3: "💬 Soporte WhatsApp 24/7",
+                    feature4: "💰 Capital: hasta $50K",
+                    cta: "Upgrade a Pro"
+                },
+                enterprise: {
+                    title: "Enterprise",
+                    period: "/mes",
+                    feature1: "🏆 Bots ilimitados + Custom", 
+                    feature2: "🎯 Estrategia personalizada",
+                    feature3: "📞 Calls estratégicas mensuales",
+                    feature4: "💎 Capital: sin límite",
+                    cta: "Contactar Ventas"
+                }
+            },
             bots: {
                 title: "Bots de Inversión Inteligente",
                 description: "Arbitraje, Scalping y Tendencias IA. 10-30% retorno anual. Conectados por API a Kraken/Binance."
@@ -203,6 +233,36 @@ window.MELANO_TRANSLATIONS = {
         services: {
             title: "Business Units",
             subtitle: "Each system designed to maximize ROI and minimize human intervention",
+            pricing: {
+                title: "Investment Plans",
+                starter: {
+                    title: "Starter", 
+                    period: "/month",
+                    feature1: "✅ Basic market analysis",
+                    feature2: "✅ 1 Demo trading bot",
+                    feature3: "✅ Email support", 
+                    feature4: "❌ Limited capital: $1K",
+                    cta: "Start Free"
+                },
+                pro: {
+                    title: "Pro",
+                    period: "/month",
+                    feature1: "🚀 5 AI Bots simultaneous", 
+                    feature2: "📊 Real-time analytics",
+                    feature3: "💬 WhatsApp support 24/7",
+                    feature4: "💰 Capital: up to $50K",
+                    cta: "Upgrade to Pro"
+                },
+                enterprise: {
+                    title: "Enterprise",
+                    period: "/month",
+                    feature1: "🏆 Unlimited bots + Custom",
+                    feature2: "🎯 Personalized strategy", 
+                    feature3: "📞 Monthly strategic calls",
+                    feature4: "💎 Capital: unlimited",
+                    cta: "Contact Sales"
+                }
+            },
             bots: {
                 title: "Intelligent Investment Bots",
                 description: "Arbitrage, Scalping and AI Trends. 10-30% annual return. API-connected to Kraken/Binance."

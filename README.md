@@ -5,7 +5,7 @@
 ![Version](https://img.shields.io/badge/VERSION-1.0.0-blue?style=for-the-badge)
 
 **IA • Automatización • Impacto**  
-Sistemas que venden, invierten y escalan solos. ROI medible en ≤30 días.
+Sistemas que venden, invierten y escalan solos. **Cashflow desde día 1** con ROI medible en ≤30 días.
 
 ## 🎯 Sistema Completo
 
@@ -16,12 +16,16 @@ Sistemas que venden, invierten y escalan solos. ROI medible en ≤30 días.
 - **🤖 Automatización Total** - n8n + Supabase + WhatsApp Cloud API
 - **📊 Analytics** - Tracking completo de conversiones
 - **🔒 Seguridad** - RLS, validaciones, sanitización
+- **💳 Stripe Checkout** - Pagos en 1 click
+- **📧 Email Sequences** - Onboarding automatizado
+- **💰 Revenue Analytics** - Métricas en tiempo real
+- **🎯 Freemium to Premium** - Conversión optimizada
 
 ### 🏗️ Arquitectura
 ```
-Landing Page → n8n Webhook → Supabase → WhatsApp Notifications
-     ↓               ↓            ↓              ↓
-   Form Submit   Lead Process   Data Store   Auto Response
+Landing → Stripe Checkout → Subscription → Email Sequences → Revenue Analytics
+    ↓           ↓              ↓                ↓               ↓
+Form Submit → Payment → User Onboarding → Conversion → Real-time Metrics
 ```
 
 ## 🚀 Deploy Instructions
@@ -36,17 +40,28 @@ npm run build
 # Update assets/js/config.js → webhookURL after n8n setup
 ```
 
-### 2️⃣ Supabase Setup
+### 2️⃣ Supabase Setup (Extended)
 ```sql
 -- Execute supabase/schema.sql in SQL Editor
+-- Execute supabase/subscription_schema.sql for revenue tracking
 -- Save SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY
 ```
 
-### 3️⃣ n8n Deployment
+### 3️⃣ Stripe Configuration
+```bash
+# Stripe Dashboard Setup:
+# 1. Create products: Starter ($0), Pro ($297), Enterprise ($997)
+# 2. Get publishable key and secret key
+# 3. Configure webhooks → n8n endpoint
+# 4. Update config.js with real Stripe keys
+```
+
+### 4️⃣ n8n Deployment (Extended)
 ```bash
 # Import workflows:
 # - n8n/lead_capture.json
 # - n8n/waba_inbound.json
+# - n8n/email_sequences.json (NEW)
 
 # Environment Variables:
 WABA_TOKEN=your_whatsapp_token
@@ -55,16 +70,43 @@ SUPABASE_URL=your_supabase_url
 SUPABASE_SERVICE_ROLE=your_service_key
 OWNER_WHATSAPP=+5492235506595
 VERIFY_TOKEN=melano-verify-token
+STRIPE_SECRET_KEY=your_stripe_secret
+SENDGRID_API_KEY=your_sendgrid_key
 
 # Deploy with HTTPS: https://n8n.YOUR-DOMAIN.com
 ```
 
-### 4️⃣ WhatsApp Cloud API Setup
+### 5️⃣ WhatsApp Cloud API Setup
 ```
 Callback URL: https://n8n.YOUR-DOMAIN.com/webhook/waba_inbound
 Verify Token: melano-verify-token
 Events: messages, message_status, message_template_status_update
 ```
+
+## 💰 **NUEVAS FUNCIONALIDADES - CASHFLOW SYSTEM**
+
+### ✅ **Stripe Checkout en 1 Click**
+- 3 planes: Starter (Free), Pro ($297), Enterprise ($997)
+- Onboarding automático post-pago
+- Webhooks para sincronización en tiempo real
+
+### ✅ **Email Sequences Automatizadas**
+- **Welcome Series** → Onboarding nuevos usuarios
+- **Trial Ending** → Conversión freemium → premium
+- **Conversion Series** → Upgrades y retención
+- Templates personalizables con variables dinámicas
+
+### ✅ **Revenue Analytics en Tiempo Real**
+- **MRR/ARR** tracking automático
+- **Churn Rate** y Customer Lifetime Value
+- **Conversion Rates** por plan
+- Dashboard live con actualización cada 30s
+
+### ✅ **Sistema Freemium Optimizado**
+- Plan Starter gratuito con limitaciones
+- Progresión natural hacia planes pagos
+- Triggers automáticos para upgrade
+- Métricas de conversión detalladas
 
 ## 🧪 Testing
 
@@ -81,8 +123,22 @@ export WABA_TOKEN="your_token"
 export WABA_PHONE_NUMBER_ID="your_id"
 export SUPABASE_URL="your_url"
 export SUPABASE_SERVICE_ROLE="your_key"
+export STRIPE_SECRET_KEY="your_stripe_key"
 
 npm run test
+```
+
+### Test Stripe Integration
+```bash
+# Test checkout creation
+curl -X POST "https://n8n.YOUR-DOMAIN.com/api/create-checkout-session" \
+  -H "Content-Type: application/json" \
+  -d '{"plan": "pro", "amount": "29700", "currency": "usd"}'
+
+# Test webhook endpoint
+curl -X POST "https://n8n.YOUR-DOMAIN.com/webhook/stripe-webhook" \
+  -H "Content-Type: application/json" \
+  -d '{"type": "customer.subscription.created", "data": {...}}'
 ```
 
 ### Test Manual WhatsApp

@@ -460,6 +460,278 @@ body {
     margin-bottom: var(--space-3xl);
 }
 
+/* Pricing Section */
+.pricing-section {
+    margin-bottom: var(--space-3xl);
+}
+
+.pricing-title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--space-2xl);
+    background: var(--gradient-gold);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: var(--space-xl);
+    margin-bottom: var(--space-3xl);
+}
+
+.pricing-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--accent-black);
+    border-radius: var(--radius-xl);
+    padding: var(--space-2xl);
+    text-align: center;
+    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+}
+
+.pricing-card.featured {
+    border: 2px solid var(--gold-primary);
+    background: var(--gradient-black);
+    box-shadow: var(--shadow-gold);
+    transform: scale(1.05);
+}
+
+.pricing-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--gold-primary);
+    box-shadow: var(--shadow-xl);
+}
+
+.pricing-card.featured:hover {
+    transform: scale(1.05) translateY(-10px);
+}
+
+.badge {
+    position: absolute;
+    top: var(--space-lg);
+    right: -var(--space-lg);
+    background: var(--gradient-gold);
+    color: var(--primary-black);
+    padding: var(--space-xs) var(--space-xl);
+    font-size: 0.875rem;
+    font-weight: var(--font-weight-bold);
+    transform: rotate(25deg);
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+}
+
+.pricing-header {
+    margin-bottom: var(--space-xl);
+}
+
+.pricing-header h4 {
+    font-size: 1.5rem;
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: var(--space-md);
+    color: var(--white);
+}
+
+.price {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: var(--space-xs);
+}
+
+.currency {
+    font-size: 1.5rem;
+    color: var(--gold-primary);
+    font-weight: var(--font-weight-semibold);
+}
+
+.amount {
+    font-size: 3rem;
+    font-weight: var(--font-weight-black);
+    background: var(--gradient-gold);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+}
+
+.period {
+    font-size: 1rem;
+    color: var(--gray-medium);
+}
+
+.pricing-features {
+    list-style: none;
+    margin-bottom: var(--space-xl);
+}
+
+.pricing-features li {
+    padding: var(--space-sm) 0;
+    color: var(--gray-light);
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.pricing-features li:last-child {
+    border-bottom: none;
+}
+
+.pricing-btn {
+    width: 100%;
+    padding: var(--space-lg) var(--space-xl);
+    border-radius: var(--radius-lg);
+    font-size: 1rem;
+    font-weight: var(--font-weight-semibold);
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+    border: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.freemium-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--white);
+    border: 1px solid var(--accent-black);
+}
+
+.freemium-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+}
+
+.pro-btn {
+    background: var(--gradient-gold);
+    color: var(--primary-black);
+    box-shadow: var(--shadow-gold);
+}
+
+.pro-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 40px rgba(255, 215, 0, 0.6);
+}
+
+.enterprise-btn {
+    background: linear-gradient(135deg, #8B5CF6 0%, #A855F7 100%);
+    color: var(--white);
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+}
+
+.enterprise-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 40px rgba(139, 92, 246, 0.5);
+}
+
+.pricing-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left var(--transition-slow);
+}
+
+.pricing-btn:hover::before {
+    left: 100%;
+}
+
+/* Revenue Analytics Dashboard */
+.revenue-dashboard {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--accent-black);
+    border-radius: var(--radius-xl);
+    padding: var(--space-2xl);
+    margin-top: var(--space-2xl);
+}
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-xl);
+}
+
+.dashboard-title {
+    font-size: 1.5rem;
+    font-weight: var(--font-weight-bold);
+    color: var(--white);
+}
+
+.live-indicator {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    color: var(--success);
+    font-size: 0.875rem;
+}
+
+.live-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--success);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+.revenue-metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-lg);
+}
+
+.revenue-metric {
+    text-align: center;
+    padding: var(--space-lg);
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(255, 215, 0, 0.1);
+}
+
+.metric-value {
+    font-size: 2rem;
+    font-weight: var(--font-weight-black);
+    background: var(--gradient-gold);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+    margin-bottom: var(--space-xs);
+}
+
+.metric-label {
+    font-size: 0.875rem;
+    color: var(--gray-medium);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.metric-change {
+    font-size: 0.75rem;
+    margin-top: var(--space-xs);
+}
+
+.metric-change.positive {
+    color: var(--success);
+}
+
+.metric-change.negative {
+    color: var(--error);
+}
+
 .section-title {
     font-size: clamp(2rem, 4vw, 3rem);
     font-weight: var(--font-weight-bold);

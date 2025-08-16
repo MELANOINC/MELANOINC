@@ -18,6 +18,8 @@
         initializeNavigation();
         initializeHeroAnimations();
         initializeFormHandling();
+        initializeStripeCheckout();
+        initializeRevenueDashboard();
         initializeScrollEffects();
         initializeModals();
         initializeResourceTracking();
@@ -405,6 +407,216 @@
                 }
             });
         });
+    }
+    
+    // Stripe Checkout Integration
+    function initializeStripeCheckout() {
+        // Load Stripe.js
+        if (!window.Stripe && window.MELANO_CONF.stripe.publishableKey) {
+            const script = document.createElement('script');
+            script.src = 'https://js.stripe.com/v3/';
+            script.onload = () => {
+                window.stripe = Stripe(window.MELANO_CONF.stripe.publishableKey);
+                setupPricingButtons();
+            };
+            document.head.appendChild(script);
+        }
+        
+        // Setup pricing buttons
+        function setupPricingButtons() {
+            const pricingButtons = document.querySelectorAll('.pricing-btn[data-plan]');
+            
+            pricingButtons.forEach(button => {
+                button.addEventListener('click', async function() {
+                    const plan = this.getAttribute('data-plan');
+                    const amount = this.getAttribute('data-amount');
+                    
+                    if (plan === 'starter') {
+                        // Free plan - direct signup
+                        handleFreePlanSignup();
+                    } else if (plan === 'enterprise') {
+                        // Enterprise - contact sales
+                        handleEnterpriseContact();
+                    } else {
+                        // Paid plans - Stripe checkout
+                        await handleStripeCheckout(plan, amount);
+                    }
+                });
+            });
+        }
+        
+        async function handleStripeCheckout(plan, amount) {
+            if (!window.stripe) return;
+            
+            try {
+                // Show loading
+                const button = event.target;
+                button.disabled = true;
+                button.textContent = 'Procesando...';
+                
+                // Create checkout session
+                const response = await fetch('/api/create-checkout-session', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        plan: plan,
+                        amount: amount,
+                        currency: 'usd'
+                    })
+                });
+                
+                const session = await response.json();
+                
+                // Redirect to Stripe Checkout
+                const result = await window.stripe.redirectToCheckout({
+                    sessionId: session.id
+                });
+                
+                if (result.error) {
+                    console.error('Stripe error:', result.error);
+                    showPaymentError(result.error.message);
+                }
+                
+            } catch (error) {
+                console.error('Checkout error:', error);
+                showPaymentError('Error al procesar el pago. Intenta nuevamente.');
+            }
+            
+            // Track checkout attempt
+            if (window.MELANO_UTILS) {
+                window.MELANO_UTILS.trackEvent('checkout_attempt', {
+                    plan: plan,
+                    amount: amount
+                });
+            }
+        }
+        
+        function handleFreePlanSignup() {
+            // Redirect to signup/onboarding
+            window.location.href = '#contact';
+            
+            // Track free signup
+            if (window.MELANO_UTILS) {
+                window.MELANO_UTILS.trackEvent('free_signup_attempt');
+            }
+        }
+        
+        function handleEnterpriseContact() {
+            // Open WhatsApp with enterprise message
+            const message = encodeURIComponent('Hola Bruno, me interesa el plan Enterprise de MELANO INC. ¿Podemos agendar una llamada?');
+            window.open(`https://wa.me/5492235506595?text=${message}`, '_blank');
+            
+            // Track enterprise interest
+            if (window.MELANO_UTILS) {
+                window.MELANO_UTILS.trackEvent('enterprise_contact');
+            }
+        }
+        
+        function showPaymentError(message) {
+            // Show error modal or notification
+            alert(message); // Simple implementation - can be improved
+        }
+    }
+    
+    // Revenue Dashboard (Real-time)
+    function initializeRevenueDashboard() {
+        if (!window.MELANO_CONF.analytics.revenueTracking) return;
+        
+        // Create dashboard if not exists
+        createRevenueDashboard();
+        
+        // Start real-time updates
+        if (window.MELANO_CONF.analytics.realTimeUpdates) {
+            setInterval(updateRevenueDashboard, window.MELANO_CONF.analytics.dashboardRefreshInterval);
+            updateRevenueDashboard(); // Initial load
+        }
+    }
+    
+    function createRevenueDashboard() {
+        const dashboardHTML = `
+            <div class="revenue-dashboard" id="revenueDashboard" style="display: none;">
+                <div class="dashboard-header">
+                    <h3 class="dashboard-title">💰 Revenue Analytics</h3>
+                    <div class="live-indicator">
+                        <span class="live-dot"></span>
+                        <span>LIVE</span>
+                    </div>
+                </div>
+                <div class="revenue-metrics">
+                    <div class="revenue-metric">
+                        <div class="metric-value" id="mrrValue">$0</div>
+                        <div class="metric-label">MRR</div>
+                        <div class="metric-change positive" id="mrrChange">+0%</div>
+                    </div>
+                    <div class="revenue-metric">
+                        <div class="metric-value" id="activeUsers">0</div>
+                        <div class="metric-label">Active Users</div>
+                        <div class="metric-change positive" id="usersChange">+0%</div>
+                    </div>
+                    <div class="revenue-metric">
+                        <div class="metric-value" id="conversionRate">0%</div>
+                        <div class="metric-label">Conversion</div>
+                        <div class="metric-change positive" id="conversionChange">+0%</div>
+                    </div>
+                    <div class="revenue-metric">
+                        <div class="metric-value" id="churnRate">0%</div>
+                        <div class="metric-label">Churn Rate</div>
+                        <div class="metric-change negative" id="churnChange">-0%</div>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        // Insert dashboard after results section
+        const resultsSection = document.getElementById('results');
+        if (resultsSection) {
+            resultsSection.insertAdjacentHTML('afterend', dashboardHTML);
+        }
+    }
+    
+    async function updateRevenueDashboard() {
+        try {
+            const response = await fetch('/api/revenue-analytics', {
+                headers: {
+                    'Authorization': 'Bearer ' + getAuthToken()
+                }
+            });
+            
+            const data = await response.json();
+            
+            // Update MRR
+            document.getElementById('mrrValue').textContent = `$${formatCurrency(data.mrr)}`;
+            document.getElementById('mrrChange').textContent = `${data.mrrGrowth >= 0 ? '+' : ''}${data.mrrGrowth}%`;
+            
+            // Update Active Users
+            document.getElementById('activeUsers').textContent = data.activeUsers;
+            document.getElementById('usersChange').textContent = `${data.usersGrowth >= 0 ? '+' : ''}${data.usersGrowth}%`;
+            
+            // Update Conversion Rate
+            document.getElementById('conversionRate').textContent = `${data.conversionRate}%`;
+            document.getElementById('conversionChange').textContent = `${data.conversionChange >= 0 ? '+' : ''}${data.conversionChange}%`;
+            
+            // Update Churn Rate
+            document.getElementById('churnRate').textContent = `${data.churnRate}%`;
+            document.getElementById('churnChange').textContent = `${data.churnChange <= 0 ? '+' : ''}${data.churnChange}%`;
+            
+            // Show dashboard
+            document.getElementById('revenueDashboard').style.display = 'block';
+            
+        } catch (error) {
+            console.error('Failed to update revenue dashboard:', error);
+        }
+    }
+    
+    function formatCurrency(amount) {
+        return new Intl.NumberFormat('en-US').format(amount);
+    }
+    
+    function getAuthToken() {
+        // Get from localStorage or cookie
+        return localStorage.getItem('auth_token') || '';
     }
     
     // Add CSS for animations
