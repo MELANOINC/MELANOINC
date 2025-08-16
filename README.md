@@ -119,7 +119,7 @@
   <h2 style="font-size:20px; margin:0 0 10px;">🎯 Our Mission</h2>
   <p style="margin:0 0 14px;">
     We build <strong>systems that sell, invest, and scale on their own</strong>, maximizing ROI and minimizing human intervention.
-    No hype. Measurable results in ≤30 days.
+    No hype. Measurable results in ≤30 days..
   </p>
 
   <h2 style="font-size:20px; margin:18px 0 10px;">🏆 Business Units</h2>
