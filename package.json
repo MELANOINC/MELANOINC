@@ -1,0 +1,37 @@
+{
+  "name": "melano-inc-funnel",
+  "version": "1.0.0",
+  "description": "MELANO INC - Bilingual Funnel (ES/EN) with n8n + Supabase Integration",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx vite --host",
+    "build": "npx vite build",
+    "preview": "npx vite preview",
+    "serve": "npx serve dist",
+    "validate": "node scripts/validate.js",
+    "test": "node scripts/test.js"
+  },
+  "keywords": [
+    "melano-inc",
+    "automation",
+    "ai",
+    "funnel",
+    "bilingual",
+    "n8n",
+    "supabase",
+    "whatsapp"
+  ],
+  "author": "Bruno A. Melano <contacto@brunomelano.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "vite": "^5.4.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/melanoinc/funnel.git"
+  },
+  "homepage": "https://brunomelano.com",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

@@ -1,211 +1,227 @@
-<!-- README Profile — MELANO INC (Bilingual) -->
-<div align="center" style="font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif; line-height:1.5; color:#0f172a;">
+# 🤖 MELANO INC - Bilingual Funnel System
 
-  <!-- Header -->
-  <div style="padding:28px 18px; border-radius:16px; border:1px solid #e5e7eb; background:linear-gradient(135deg,#0ea5e9 0%,#8b5cf6 60%,#111827 100%); color:#fff;">
-    <h1 style="margin:0 0 8px; font-size:28px;">🌐 MELANO INC</h1>
-    <p style="margin:0; font-size:18px;"><strong>IA. Automatización. Impacto.</strong></p>
-    <p style="margin:8px 0 0; font-size:14px; opacity:.9;">We automate investments. We scale results. We turn time into real money.</p>
+![MELANO INC](https://img.shields.io/badge/MELANO-INC-FFD700?style=for-the-badge&logo=robot&logoColor=black)
+![Status](https://img.shields.io/badge/STATUS-Production%20Ready-00D400?style=for-the-badge)
+![Version](https://img.shields.io/badge/VERSION-1.0.0-blue?style=for-the-badge)
 
-   <!-- Badges -->
-<p style="margin:14px 0 0;">
-  <img alt="AI" src="https://img.shields.io/badge/AI-Powered-111827?style=flat&logo=openai&logoColor=white">
-  <img alt="FastAPI" src="https://img.shields.io/badge/FastAPI-Backend-059669?style=flat">
-  <img alt="React" src="https://img.shields.io/badge/React-Frontend-0ea5e9?style=flat&logo=react&logoColor=white">
-  <img alt="Docker" src="https://img.shields.io/badge/Docker-Ready-2563eb?style=flat&logo=docker&logoColor=white">
-  <img alt="Blockchain" src="https://img.shields.io/badge/Blockchain-Tokenization-7c3aed?style=flat">
-</p>
-  </div>
+**IA • Automatización • Impacto**  
+Sistemas que venden, invierten y escalan solos. ROI medible en ≤30 días.
 
-  <!-- CEO -->
-  <div style="margin:18px 0 6px; font-size:14px;">
-    👤 <strong>CEO &amp; Founder:</strong>
-    <a href="mailto:contacto@brunomelano.com">Bruno A. Melano</a> · Mar del Plata → Global
-  </div>
-</div>
+## 🎯 Sistema Completo
 
-<hr style="border:none; border-top:1px solid #e5e7eb; margin:20px 0;">
+### ✨ Características Principales
+- **🌍 Bilingüe** - Español/English con switch dinámico
+- **🎨 Diseño Premium** - Tema negro/dorado, animaciones avanzadas
+- **📱 Responsive** - Optimizado para todos los dispositivos
+- **🤖 Automatización Total** - n8n + Supabase + WhatsApp Cloud API
+- **📊 Analytics** - Tracking completo de conversiones
+- **🔒 Seguridad** - RLS, validaciones, sanitización
 
-<!-- Spanish -->
-<div style="font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif; color:#0f172a;">
+### 🏗️ Arquitectura
+```
+Landing Page → n8n Webhook → Supabase → WhatsApp Notifications
+     ↓               ↓            ↓              ↓
+   Form Submit   Lead Process   Data Store   Auto Response
+```
 
-  <h2 style="font-size:20px; margin:0 0 10px;">🎯 Nuestra Misión</h2>
-  <p style="margin:0 0 14px;">
-    Diseñamos <strong>sistemas que venden, invierten y escalan solos</strong>, maximizando ROI y minimizando la intervención humana.
-    Sin humo. Resultados medibles en ≤30 días.
-  </p>
+## 🚀 Deploy Instructions
 
-  <h2 style="font-size:20px; margin:18px 0 10px;">🏆 Unidades de Negocio</h2>
+### 1️⃣ Landing Page Deploy
+```bash
+# Build static files
+npm run build
 
-  <h3 style="font-size:16px; margin:12px 0 6px;">🤖 Bots de Inversión Inteligente</h3>
-  <table style="width:100%; border-collapse:collapse; font-size:14px;">
-    <thead>
-      <tr>
-        <th align="left" style="border-bottom:1px solid #e5e7eb; padding:8px;">BOT</th>
-        <th align="left" style="border-bottom:1px solid #e5e7eb; padding:8px;">Perfil</th>
-        <th align="left" style="border-bottom:1px solid #e5e7eb; padding:8px;">Riesgo</th>
-        <th align="left" style="border-bottom:1px solid #e5e7eb; padding:8px;">Retorno</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td style="padding:8px; border-bottom:1px solid #f1f5f9;"><strong>Arbitraje</strong></td>
-        <td style="padding:8px; border-bottom:1px solid #f1f5f9;">Conservador</td>
-        <td style="padding:8px; border-bottom:1px solid #f1f5f9;">Bajo</td>
-        <td style="padding:8px; border-bottom:1px solid #f1f5f9;">10%–15% anual</td>
-      </tr>
-      <tr>
-        <td style="padding:8px; border-bottom:1px solid #f1f5f9;"><strong>Scalping</strong></td>
-        <td style="padding:8px; border-bottom:1px solid #f1f5f9;">Dinámico</td>
-        <td style="padding:8px; border-bottom:1px solid #f1f5f9;">Medio</td>
-        <td style="padding:8px; border-bottom:1px solid #f1f5f9;">15%–20% anual</td>
-      </tr>
-      <tr>
-        <td style="padding:8px;"><strong>Tendencias IA</strong></td>
-        <td style="padding:8px;">Visionario</td>
-        <td style="padding:8px;">Alto</td>
-        <td style="padding:8px;">20%–30% anual</td>
-      </tr>
-    </tbody>
-  </table>
-  <p style="margin:8px 0 14px; font-size:13px; color:#374151;">
-    Conectados por API a <strong>Kraken</strong> o <strong>Binance</strong>. <strong>Melania Bot</strong> filtra inversores y automatiza onboarding.
-  </p>
+# Deploy to Netlify/Vercel
+# Set domain: brunomelano.com
+# Update assets/js/config.js → webhookURL after n8n setup
+```
 
-  <h3 style="font-size:16px; margin:12px 0 6px;">🏡 Real Estate Tech</h3>
-  <ul style="margin:0 0 12px; padding-left:18px; font-size:14px;">
-    <li>Funnels inmobiliarios automatizados + CRM con IA.</li>
-    <li>Tokenización de propiedades y venta global.</li>
-    <li>Integración con WhatsApp, email y bots comerciales.</li>
-  </ul>
+### 2️⃣ Supabase Setup
+```sql
+-- Execute supabase/schema.sql in SQL Editor
+-- Save SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY
+```
 
-  <h3 style="font-size:16px; margin:12px 0 6px;">💼 SaaS y Automatización</h3>
-  <ul style="margin:0 0 12px; padding-left:18px; font-size:14px;">
-    <li>Plataformas llave en mano con IA.</li>
-    <li>Bots de ventas, soporte y postventa.</li>
-    <li>Automatización de flujos internos y externos.</li>
-    <li>Integración con APIs, CRMs y pasarelas de pago.</li>
-  </ul>
+### 3️⃣ n8n Deployment
+```bash
+# Import workflows:
+# - n8n/lead_capture.json
+# - n8n/waba_inbound.json
 
-  <h3 style="font-size:16px; margin:12px 0 6px;">🎨 Branding y Marketing Premium</h3>
-  <ul style="margin:0 0 12px; padding-left:18px; font-size:14px;">
-    <li>Posicionamiento internacional y narrativa de autoridad.</li>
-    <li>Campañas digitales de alto impacto.</li>
-    <li>Contenido para redes, email y medios.</li>
-  </ul>
+# Environment Variables:
+WABA_TOKEN=your_whatsapp_token
+WABA_PHONE_NUMBER_ID=your_phone_id
+SUPABASE_URL=your_supabase_url
+SUPABASE_SERVICE_ROLE=your_service_key
+OWNER_WHATSAPP=+5492235506595
+VERIFY_TOKEN=melano-verify-token
 
-  <h3 style="font-size:16px; margin:12px 0 6px;">🔗 Blockchain y Tokenización</h3>
-  <ul style="margin:0 0 12px; padding-left:18px; font-size:14px;">
-    <li>Activos digitales y smart contracts.</li>
-    <li>Integración de NFTs y economía digital.</li>
-  </ul>
+# Deploy with HTTPS: https://n8n.YOUR-DOMAIN.com
+```
 
-  <h2 style="font-size:20px; margin:18px 0 10px;">💼 Nichos Estratégicos</h2>
-  <p style="margin:0 0 14px; font-size:14px;">
-    Agencias inmobiliarias premium · Inversores cripto y fondos privados · Negocios locales en escala · Startups y corporaciones
-  </p>
+### 4️⃣ WhatsApp Cloud API Setup
+```
+Callback URL: https://n8n.YOUR-DOMAIN.com/webhook/waba_inbound
+Verify Token: melano-verify-token
+Events: messages, message_status, message_template_status_update
+```
 
-  <h2 style="font-size:20px; margin:18px 0 10px;">🌍 Propuesta de Valor</h2>
-  <p style="margin:0 0 16px; font-size:14px;">
-    <strong>Automatización total</strong> · <strong>Escalabilidad global</strong> · <strong>KPIs claros</strong> · <strong>ROI ≤30 días</strong> · <strong>Branding premium</strong>
-  </p>
-</div>
+## 🧪 Testing
 
-<hr style="border:none; border-top:1px solid #e5e7eb; margin:20px 0;">
+### Validación Pre-Deploy
+```bash
+npm run validate
+```
 
-<!-- English -->
-<div style="font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif; color:#0f172a;">
+### Test Completo
+```bash
+# Set environment variables first
+export WEBHOOK_URL="https://n8n.YOUR-DOMAIN.com/webhook/melano_lead"
+export WABA_TOKEN="your_token"
+export WABA_PHONE_NUMBER_ID="your_id"
+export SUPABASE_URL="your_url"
+export SUPABASE_SERVICE_ROLE="your_key"
 
-  <h2 style="font-size:20px; margin:0 0 10px;">🎯 Our Mission</h2>
-  <p style="margin:0 0 14px;">
-    We build <strong>systems that sell, invest, and scale on their own</strong>, maximizing ROI and minimizing human intervention.
-    No hype. Measurable results in ≤30 days..
-  </p>
+npm run test
+```
 
-  <h2 style="font-size:20px; margin:18px 0 10px;">🏆 Business Units</h2>
+### Test Manual WhatsApp
+```bash
+curl -X POST "https://graph.facebook.com/v20.0/$WABA_PHONE_NUMBER_ID/messages" \
+  -H "Authorization: Bearer $WABA_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "messaging_product": "whatsapp",
+    "to": "+5492235506595",
+    "type": "text",
+    "text": {"body": "🧪 Test OK - MELANO INC"}
+  }'
+```
 
-  <h3 style="font-size:16px; margin:12px 0 6px;">🤖 Intelligent Investment Bots</h3>
-  <table style="width:100%; border-collapse:collapse; font-size:14px;">
-    <thead>
-      <tr>
-        <th align="left" style="border-bottom:1px solid #e5e7eb; padding:8px;">BOT</th>
-        <th align="left" style="border-bottom:1px solid #e5e7eb; padding:8px;">Profile</th>
-        <th align="left" style="border-bottom:1px solid #e5e7eb; padding:8px;">Risk</th>
-        <th align="left" style="border-bottom:1px solid #e5e7eb; padding:8px;">Return</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td style="padding:8px; border-bottom:1px solid #f1f5f9;"><strong>Arbitrage</strong></td>
-        <td style="padding:8px; border-bottom:1px solid #f1f5f9;">Conservative</td>
-        <td style="padding:8px; border-bottom:1px solid #f1f5f9;">Low</td>
-        <td style="padding:8px; border-bottom:1px solid #f1f5f9;">10%–15% yearly</td>
-      </tr>
-      <tr>
-        <td style="padding:8px; border-bottom:1px solid #f1f5f9;"><strong>Scalping</strong></td>
-        <td style="padding:8px; border-bottom:1px solid #f1f5f9;">Dynamic</td>
-        <td style="padding:8px; border-bottom:1px solid #f1f5f9;">Medium</td>
-        <td style="padding:8px; border-bottom:1px solid #f1f5f9;">15%–20% yearly</td>
-      </tr>
-      <tr>
-        <td style="padding:8px;"><strong>AI Trends</strong></td>
-        <td style="padding:8px;">Visionary</td>
-        <td style="padding:8px;">High</td>
-        <td style="padding:8px;">20%–30% yearly</td>
-      </tr>
-    </tbody>
-  </table>
-  <p style="margin:8px 0 14px; font-size:13px; color:#374151;">
-    API-connected to <strong>Kraken</strong> or <strong>Binance</strong>. <strong>Melania Bot</strong> handles investor screening and onboarding.
-  </p>
+### Test Supabase Direct
+```bash
+curl -X POST "$SUPABASE_URL/rest/v1/crm_clientes" \
+  -H "apikey: $SUPABASE_SERVICE_ROLE" \
+  -H "Authorization: Bearer $SUPABASE_SERVICE_ROLE" \
+  -H "Content-Type: application/json" \
+  -H "Prefer: return=representation" \
+  -d '{
+    "name": "Test User",
+    "email": "test@demo.com",
+    "phone": "+5492235506595",
+    "budget": ">20000",
+    "urgency": "now",
+    "message": "Test directo",
+    "lang": "es"
+  }'
+```
 
-  <h3 style="font-size:16px; margin:12px 0 6px;">🏡 Real Estate Tech</h3>
-  <ul style="margin:0 0 12px; padding-left:18px; font-size:14px;">
-    <li>Automated real estate funnels + AI CRM.</li>
-    <li>Property tokenization and global sales.</li>
-    <li>WhatsApp, email, and commercial bot integration.</li>
-  </ul>
+## 📁 Estructura del Proyecto
 
-  <h3 style="font-size:16px; margin:12px 0 6px;">💼 SaaS &amp; Business Automation</h3>
-  <ul style="margin:0 0 12px; padding-left:18px; font-size:14px;">
-    <li>Turnkey platforms with integrated AI.</li>
-    <li>Bots for sales, support, and post-sales.</li>
-    <li>Automation of internal and external workflows.</li>
-    <li>API, CRM, and payment gateway integrations.</li>
-  </ul>
+```
+MELANO-INC-FUNNEL/
+├── index.html                 # Landing page principal
+├── assets/
+│   ├── css/
+│   │   └── styles.css         # Estilos principales (negro/dorado)
+│   ├── js/
+│   │   ├── config.js          # Configuración y constantes
+│   │   ├── translations.js    # Traducciones ES/EN
+│   │   └── app.js            # Lógica principal
+│   └── pdf/
+│       ├── MELANO_INC_Automation_Guide_ES.pdf
+│       ├── MELANO_INC_Automation_Guide_EN.pdf
+│       ├── MELANO_INC_Bots_Manual_ES.pdf
+│       └── MELANO_INC_Bots_Manual_EN.pdf
+├── supabase/
+│   └── schema.sql            # Schema completo del CRM
+├── n8n/
+│   ├── lead_capture.json     # Workflow captura de leads
+│   └── waba_inbound.json     # Webhook WhatsApp entrante
+├── scripts/
+│   ├── validate.js           # Validación pre-deploy
+│   └── test.js              # Tests de integración
+└── README.md
+```
 
-  <h3 style="font-size:16px; margin:12px 0 6px;">🎨 Premium Branding &amp; Marketing</h3>
-  <ul style="margin:0 0 12px; padding-left:18px; font-size:14px;">
-    <li>International positioning and authority narrative.</li>
-    <li>High-impact digital campaigns.</li>
-    <li>Content for social, email, and media.</li>
-  </ul>
+## 🎨 Design System
 
-  <h3 style="font-size:16px; margin:12px 0 6px;">🔗 Blockchain &amp; Tokenization</h3>
-  <ul style="margin:0 0 12px; padding-left:18px; font-size:14px;">
-    <li>Digital assets and smart contracts.</li>
-    <li>NFT integration and digital economy solutions.</li>
-  </ul>
+### Colores
+- **Primary Black**: `#0f0f0f`
+- **Secondary Black**: `#1a1a1a` 
+- **Accent Black**: `#2d2d2d`
+- **Gold Primary**: `#ffd700`
+- **Gold Secondary**: `#ffed4e`
+- **Gold Dark**: `#b8860b`
 
-  <h2 style="font-size:20px; margin:18px 0 10px;">💼 Strategic Niches</h2>
-  <p style="margin:0 0 14px; font-size:14px;">
-    Premium real estate agencies · Crypto investors & private funds · Scaling local businesses · Startups & enterprises
-  </p>
+### Typography
+- **Font**: Inter (Google Fonts)
+- **Weights**: 300, 400, 500, 600, 700, 800, 900
 
-  <h2 style="font-size:20px; margin:18px 0 10px;">🌍 Value Proposition</h2>
-  <p style="margin:0; font-size:14px;">
-    <strong>Total automation</strong> · <strong>Global scalability</strong> · <strong>Clear KPIs</strong> · <strong>ROI ≤30 days</strong> · <strong>Premium branding</strong>
-  </p>
-</div>
+### Components
+- **Gradient Gold**: `linear-gradient(135deg, #ffd700 0%, #b8860b 100%)`
+- **Shadow Gold**: `0 0 20px rgba(255, 215, 0, 0.3)`
+- **Animations**: Floating cards, hover effects, micro-interactions
 
-<hr style="border:none; border-top:1px solid #e5e7eb; margin:20px 0;">
+## 🔧 Configuración
 
-<!-- Contact -->
-<div align="center" style="font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif; color:#0f172a;">
-  <p style="margin:6px 0 10px; font-size:14px;">📩 <strong>contacto@brunomelano.com</strong></p>
-  <a href="https://brunomelano.com"><img alt="Website" src="https://img.shields.io/badge/Website-brunomelano.com-0f172a?style=for-the-badge"></a>
-  <a href="https://linkedin.com/in/brunomelano"><img alt="LinkedIn" src="https://img.shields.io/badge/LinkedIn-/in/brunomelano-0a66c2?style=for-the-badge&logo=linkedin&logoColor=white"></a>
-</div>
+### Variables Críticas
+```javascript
+// assets/js/config.js
+window.MELANO_CONF = {
+    webhookURL: "https://n8n.YOUR-DOMAIN.com/webhook/melano_lead", // ⚠️ UPDATE!
+    contact: {
+        phone: "+5492235506595",
+        email: "contacto@brunomelano.com",
+        whatsapp: "https://wa.me/5492235506595"
+    },
+    checkoutURL: "https://link.mercadopago.com/melanoinc"
+};
+```
 
+### Supabase Tables
+- **crm_clientes** - Leads principales
+- **crm_interactions** - Historial de comunicaciones
+- **crm_analytics** - Eventos y métricas
 
+### n8n Workflows
+- **Lead Capture** - Formulario → Supabase → WhatsApp
+- **WhatsApp Inbound** - Mensajes entrantes → Notificaciones
 
+## ✅ Checklist Final
+
+### Pre-Deploy
+- [ ] Todos los archivos validados (`npm run validate`)
+- [ ] PDFs subidos al directorio `assets/pdf/`
+- [ ] Dominio configurado: brunomelano.com
+- [ ] n8n deployado con HTTPS
+- [ ] Variables de entorno configuradas
+
+### Post-Deploy
+- [ ] Landing online y funcionando
+- [ ] Form submit → Supabase ✅
+- [ ] Notificaciones WhatsApp ✅
+- [ ] Callback WhatsApp Cloud API verificado
+- [ ] PDFs descargables
+- [ ] Switch de idiomas funcionando
+- [ ] Responsive en móviles
+
+### Tests Finales
+- [ ] Submit formulario desde landing
+- [ ] Recibir WhatsApp en +5492235506595
+- [ ] Verificar data en Supabase
+- [ ] Test downloads PDFs
+- [ ] Link MercadoPago funcional
+
+## 📞 Contacto
+
+**Bruno A. Melano**  
+CEO & Founder | MELANO INC  
+📧 contacto@brunomelano.com  
+📱 +54 9223 550-6595  
+🌐 https://brunomelano.com  
+
+---
+
+**🤖 MELANO INC - IA • Automatización • Impacto**  
+*Sistemas que venden, invierten y escalan solos.*

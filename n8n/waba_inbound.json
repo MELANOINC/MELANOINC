@@ -1,0 +1,381 @@
+{
+  "name": "MELANO INC - WhatsApp Inbound",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "GET",
+        "path": "waba_inbound",
+        "responseMode": "responseNode",
+        "options": {
+          "cors": {
+            "allowedOrigins": "*"
+          }
+        }
+      },
+      "id": "webhook-verify",
+      "name": "Webhook Verify",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [240, 120],
+      "webhookId": "waba-verify-webhook"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST", 
+        "path": "waba_inbound",
+        "responseMode": "responseNode",
+        "options": {
+          "cors": {
+            "allowedOrigins": "*"
+          }
+        }
+      },
+      "id": "webhook-inbound",
+      "name": "Webhook Inbound",
+      "type": "n8n-nodes-base.webhook", 
+      "typeVersion": 1,
+      "position": [240, 300],
+      "webhookId": "waba-inbound-webhook"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "verify-condition",
+              "leftValue": "={{ $json.query['hub.verify_token'] }}",
+              "rightValue": "={{ $vars.VERIFY_TOKEN }}",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "verify-token",
+      "name": "Verify Token", 
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [460, 120]
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "={{ $json.query['hub.challenge'] }}"
+      },
+      "id": "verify-response",
+      "name": "Verify Response",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [680, 80]
+    },
+    {
+      "parameters": {
+        "respondWith": "text", 
+        "responseBody": "Invalid verify token"
+      },
+      "id": "verify-error",
+      "name": "Verify Error",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [680, 160]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "message-condition",
+              "leftValue": "={{ $json.body.entry && $json.body.entry[0] && $json.body.entry[0].changes && $json.body.entry[0].changes[0] && $json.body.entry[0].changes[0].value && $json.body.entry[0].changes[0].value.messages }}",
+              "rightValue": "",
+              "operator": {
+                "type": "any",
+                "operation": "exists"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "check-message",
+      "name": "Check Message",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [460, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "const entry = $input.all()[0].json.body.entry[0];\nconst change = entry.changes[0];\nconst message = change.value.messages[0];\nconst contact = change.value.contacts[0];\n\nreturn {\n  phone: message.from,\n  name: contact ? contact.profile.name : 'Unknown',\n  message: message.text ? message.text.body : message.type,\n  message_id: message.id,\n  timestamp: message.timestamp,\n  type: message.type,\n  waba_id: change.value.metadata.phone_number_id\n};"
+      },
+      "id": "extract-message",
+      "name": "Extract Message Data",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [680, 260]
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "value": "public", 
+          "mode": "list"
+        },
+        "table": {
+          "__rl": true,
+          "value": "crm_clientes",
+          "mode": "list"
+        },
+        "filterType": "manual",
+        "matchingColumns": [
+          {
+            "column": "phone",
+            "operator": "ilike",
+            "value": "=%{{ $json.phone }}%"
+          }
+        ],
+        "options": {}
+      },
+      "id": "find-client",
+      "name": "Find Client",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [900, 260],
+      "credentials": {
+        "supabaseApi": {
+          "id": "supabase-credentials",
+          "name": "MELANO Supabase"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "insert",
+        "schema": {
+          "__rl": true,
+          "value": "public",
+          "mode": "list"
+        },
+        "table": {
+          "__rl": true,
+          "value": "crm_interactions",
+          "mode": "list"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "values": {
+            "client_id": "={{ $('Find Client').item.json.length > 0 ? $('Find Client').item.json[0].id : null }}",
+            "type": "whatsapp_inbound",
+            "content": "={{ $('Extract Message Data').item.json.message }}",
+            "status": "recibido"
+          }
+        }
+      },
+      "id": "log-message",
+      "name": "Log Message",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [1120, 260],
+      "credentials": {
+        "supabaseApi": {
+          "id": "supabase-credentials", 
+          "name": "MELANO Supabase"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://graph.facebook.com/v20.0/{{ $vars.WABA_PHONE_NUMBER_ID }}/messages",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer {{ $vars.WABA_TOKEN }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "json",
+        "body": {
+          "messaging_product": "whatsapp",
+          "to": "={{ $vars.OWNER_WHATSAPP }}",
+          "type": "text",
+          "text": {
+            "body": "💬 *MENSAJE WHATSAPP RECIBIDO*\n\n👤 *De:* {{ $('Extract Message Data').item.json.name }}\n📱 *Teléfono:* {{ $('Extract Message Data').item.json.phone }}\n\n📝 *Mensaje:*\n{{ $('Extract Message Data').item.json.message }}\n\n---\n⏰ {{ new Date($('Extract Message Data').item.json.timestamp * 1000).toLocaleString('es-ES') }}\n\n{{ $('Find Client').item.json.length > 0 ? '🎯 Cliente registrado en CRM' : '⚠️ Cliente NO registrado' }}"
+          }
+        }
+      },
+      "id": "notify-owner",
+      "name": "Notify Owner",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [1120, 120]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": {
+          "status": "received",
+          "message": "Message processed successfully"
+        }
+      },
+      "id": "success-response",
+      "name": "Success Response",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [1340, 260]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": {
+          "status": "ignored",
+          "message": "No message to process" 
+        }
+      },
+      "id": "ignore-response",
+      "name": "Ignore Response",
+      "type": "n8n-nodes-base.respondToWebhook", 
+      "typeVersion": 1,
+      "position": [680, 340]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook Verify": {
+      "main": [
+        [
+          {
+            "node": "Verify Token",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook Inbound": {
+      "main": [
+        [
+          {
+            "node": "Check Message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Verify Token": {
+      "main": [
+        [
+          {
+            "node": "Verify Response",
+            "type": "main", 
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Verify Error",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Message": {
+      "main": [
+        [
+          {
+            "node": "Extract Message Data",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Ignore Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract Message Data": {
+      "main": [
+        [
+          {
+            "node": "Find Client",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Find Client": {
+      "main": [
+        [
+          {
+            "node": "Log Message",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Notify Owner",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Log Message": {
+      "main": [
+        [
+          {
+            "node": "Success Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "1",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "id": "melano-waba-inbound",
+  "tags": [
+    {
+      "createdAt": "2025-01-27T10:00:00.000Z",
+      "updatedAt": "2025-01-27T10:00:00.000Z", 
+      "id": "melano-tag",
+      "name": "MELANO INC"
+    }
+  ]
+}

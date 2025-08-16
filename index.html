@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MELANO INC | IA • Automatización • Impacto</title>
+    <meta name="description" content="Sistemas que venden, invierten y escalan solos. ROI en ≤30 días. Bots de inversión inteligente + Automatización total.">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/styles.css">
+    
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "MELANO INC",
+      "url": "https://brunomelano.com",
+      "logo": "https://brunomelano.com/assets/images/logo.png",
+      "description": "IA, Automatización e Impacto. Sistemas que venden, invierten y escalan solos.",
+      "founder": {
+        "@type": "Person",
+        "name": "Bruno A. Melano",
+        "email": "contacto@brunomelano.com"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+5492235506595",
+        "contactType": "customer service"
+      }
+    }
+    </script>
+</head>
+<body>
+    <!-- Language Toggle -->
+    <div class="lang-toggle">
+        <button id="lang-es" class="lang-btn active" data-lang="es">ES</button>
+        <button id="lang-en" class="lang-btn" data-lang="en">EN</button>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <span class="logo">🤖</span>
+                <span class="brand-text">MELANO INC</span>
+            </div>
+            <div class="nav-links">
+                <a href="#services" data-i18n="nav.services">Servicios</a>
+                <a href="#results" data-i18n="nav.results">Resultados</a>
+                <a href="#contact" data-i18n="nav.contact">Contacto</a>
+                <a href="#" class="cta-btn" data-i18n="nav.cta">Comenzar Ahora</a>
+            </div>
+            <div class="nav-mobile">
+                <button class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span data-i18n="hero.title.part1">Sistemas que</span>
+                    <span class="gradient-text" data-i18n="hero.title.part2">Venden, Invierten</span>
+                    <span data-i18n="hero.title.part3">y Escalan</span>
+                    <span class="highlight" data-i18n="hero.title.part4">Solos</span>
+                </h1>
+                <p class="hero-subtitle" data-i18n="hero.subtitle">
+                    IA • Automatización • Impacto<br>
+                    ROI medible en ≤30 días. Sin humo, solo resultados.
+                </p>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number">200%</span>
+                        <span class="stat-label" data-i18n="hero.stats.roi">ROI Promedio</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">15</span>
+                        <span class="stat-label" data-i18n="hero.stats.days">Días Deploy</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">24/7</span>
+                        <span class="stat-label" data-i18n="hero.stats.automation">Automatización</span>
+                    </div>
+                </div>
+                <div class="hero-actions">
+                    <button class="btn-primary" id="hero-cta" data-i18n="hero.cta.primary">
+                        Analizar Mi Negocio GRATIS
+                    </button>
+                    <a href="https://wa.me/5492235506595?text=Hola%20Bruno,%20quiero%20conocer%20más%20sobre%20MELANO%20INC" 
+                       class="btn-secondary" target="_blank">
+                        <span>💬</span>
+                        <span data-i18n="hero.cta.whatsapp">WhatsApp Directo</span>
+                    </a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="floating-cards">
+                    <div class="card card-1">
+                        <div class="card-icon">🤖</div>
+                        <div class="card-title" data-i18n="hero.cards.bots">Bots IA</div>
+                        <div class="card-metric">+300% ROI</div>
+                    </div>
+                    <div class="card card-2">
+                        <div class="card-icon">📈</div>
+                        <div class="card-title" data-i18n="hero.cards.automation">Automatización</div>
+                        <div class="card-metric">24/7 Activo</div>
+                    </div>
+                    <div class="card card-3">
+                        <div class="card-icon">💎</div>
+                        <div class="card-title" data-i18n="hero.cards.premium">Premium</div>
+                        <div class="card-metric">Global Scale</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-i18n="services.title">Unidades de Negocio</h2>
+                <p class="section-subtitle" data-i18n="services.subtitle">
+                    Cada sistema diseñado para maximizar ROI y minimizar intervención humana
+                </p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🤖</div>
+                    <h3 data-i18n="services.bots.title">Bots de Inversión Inteligente</h3>
+                    <p data-i18n="services.bots.description">
+                        Arbitraje, Scalping y Tendencias IA. 10-30% retorno anual.
+                        Conectados por API a Kraken/Binance.
+                    </p>
+                    <div class="service-features">
+                        <span class="feature">Arbitraje: 10-15%</span>
+                        <span class="feature">Scalping: 15-20%</span>
+                        <span class="feature">IA Trends: 20-30%</span>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">🏡</div>
+                    <h3 data-i18n="services.realestate.title">Real Estate Tech</h3>
+                    <p data-i18n="services.realestate.description">
+                        Funnels inmobiliarios + CRM IA. Tokenización de propiedades.
+                        Integración WhatsApp y bots comerciales.
+                    </p>
+                    <div class="service-features">
+                        <span class="feature">CRM Automatizado</span>
+                        <span class="feature">Tokenización</span>
+                        <span class="feature">Bot WhatsApp</span>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">💼</div>
+                    <h3 data-i18n="services.saas.title">SaaS & Automatización</h3>
+                    <p data-i18n="services.saas.description">
+                        Plataformas llave en mano con IA. Bots de ventas, soporte y postventa.
+                        APIs, CRMs y pasarelas integradas.
+                    </p>
+                    <div class="service-features">
+                        <span class="feature">Turnkey Platforms</span>
+                        <span class="feature">Sales Bots</span>
+                        <span class="feature">API Integration</span>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">🎨</div>
+                    <h3 data-i18n="services.branding.title">Branding Premium</h3>
+                    <p data-i18n="services.branding.description">
+                        Posicionamiento internacional. Campañas de alto impacto.
+                        Narrativa de autoridad y contenido multiplataforma.
+                    </p>
+                    <div class="service-features">
+                        <span class="feature">Global Positioning</span>
+                        <span class="feature">Authority Content</span>
+                        <span class="feature">Multi-channel</span>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">🔗</div>
+                    <h3 data-i18n="services.blockchain.title">Blockchain & Tokenización</h3>
+                    <p data-i18n="services.blockchain.description">
+                        Activos digitales y smart contracts. NFTs y economía digital.
+                        Soluciones descentralizadas escalables.
+                    </p>
+                    <div class="service-features">
+                        <span class="feature">Smart Contracts</span>
+                        <span class="feature">NFT Integration</span>
+                        <span class="feature">DeFi Solutions</span>
+                    </div>
+                </div>
+                
+                <div class="service-card featured">
+                    <div class="service-icon">⚡</div>
+                    <h3 data-i18n="services.custom.title">Solución Personalizada</h3>
+                    <p data-i18n="services.custom.description">
+                        Análisis completo de tu negocio. Estrategia personalizada
+                        con KPIs claros y ROI garantizado en 30 días.
+                    </p>
+                    <button class="service-cta" data-i18n="services.custom.cta">
+                        Consulta Estratégica GRATIS
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Section -->
+    <section id="results" class="results">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-i18n="results.title">Resultados Comprobados</h2>
+                <p class="section-subtitle" data-i18n="results.subtitle">
+                    Sin humo. Solo números reales de clientes reales.
+                </p>
+            </div>
+            <div class="results-grid">
+                <div class="result-card">
+                    <div class="result-number">350%</div>
+                    <div class="result-label" data-i18n="results.roi">ROI Promedio</div>
+                    <div class="result-period">30 días</div>
+                </div>
+                <div class="result-card">
+                    <div class="result-number">$2.4M</div>
+                    <div class="result-label" data-i18n="results.managed">Capital Gestionado</div>
+                    <div class="result-period">2024</div>
+                </div>
+                <div class="result-card">
+                    <div class="result-number">47</div>
+                    <div class="result-label" data-i18n="results.clients">Clientes Activos</div>
+                    <div class="result-period">Global</div>
+                </div>
+                <div class="result-card">
+                    <div class="result-number">95%</div>
+                    <div class="result-label" data-i18n="results.automation">Automatización</div>
+                    <div class="result-period">Media</div>
+                </div>
+            </div>
+            
+            <div class="testimonials">
+                <h3 data-i18n="results.testimonials.title">Lo Que Dicen Nuestros Clientes</h3>
+                <div class="testimonial-grid">
+                    <div class="testimonial">
+                        <div class="testimonial-content">
+                            <p data-i18n="results.testimonials.1.content">
+                                "En 3 semanas automatizamos todo el proceso de ventas. 
+                                ROI del 280% en el primer mes. Brutal."
+                            </p>
+                            <div class="testimonial-author">
+                                <span class="name">Carlos R.</span>
+                                <span class="role" data-i18n="results.testimonials.1.role">CEO, Inmobiliaria Premium</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial">
+                        <div class="testimonial-content">
+                            <p data-i18n="results.testimonials.2.content">
+                                "Los bots de inversión generaron $180K en 6 meses. 
+                                Trabajo 2 horas por semana, todo automatizado."
+                            </p>
+                            <div class="testimonial-author">
+                                <span class="name">María S.</span>
+                                <span class="role" data-i18n="results.testimonials.2.role">Inversora Privada</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial">
+                        <div class="testimonial-content">
+                            <p data-i18n="results.testimonials.3.content">
+                                "From local to global in 45 days. The branding and 
+                                automation systems are game-changing."
+                            </p>
+                            <div class="testimonial-author">
+                                <span class="name">Michael T.</span>
+                                <span class="role" data-i18n="results.testimonials.3.role">Tech Startup Founder</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lead Form Section -->
+    <section id="contact" class="lead-form-section">
+        <div class="container">
+            <div class="form-container">
+                <div class="form-header">
+                    <h2 data-i18n="form.title">Análisis GRATUITO de tu Negocio</h2>
+                    <p data-i18n="form.subtitle">
+                        15 minutos. Sin compromisos. Estrategia personalizada para automatizar y escalar.
+                    </p>
+                </div>
+                
+                <form id="leadForm" class="lead-form">
+                    <div class="form-group">
+                        <label for="name" data-i18n="form.labels.name">Nombre Completo</label>
+                        <input type="text" id="name" name="name" required 
+                               data-i18n-placeholder="form.placeholders.name">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email" data-i18n="form.labels.email">Email Corporativo</label>
+                        <input type="email" id="email" name="email" required 
+                               data-i18n-placeholder="form.placeholders.email">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone" data-i18n="form.labels.phone">WhatsApp</label>
+                        <input type="tel" id="phone" name="phone" required 
+                               data-i18n-placeholder="form.placeholders.phone">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="budget" data-i18n="form.labels.budget">Presupuesto Mensual</label>
+                        <select id="budget" name="budget" required>
+                            <option value="" data-i18n="form.budget.select">Selecciona tu rango</option>
+                            <option value="5000-10000">$5,000 - $10,000</option>
+                            <option value="10000-20000">$10,000 - $20,000</option>
+                            <option value="20000+">$20,000+</option>
+                            <option value="custom" data-i18n="form.budget.custom">Personalizado</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="urgency" data-i18n="form.labels.urgency">¿Cuándo necesitas resultados?</label>
+                        <select id="urgency" name="urgency" required>
+                            <option value="" data-i18n="form.urgency.select">Selecciona urgencia</option>
+                            <option value="asap" data-i18n="form.urgency.asap">Lo antes posible</option>
+                            <option value="month" data-i18n="form.urgency.month">Este mes</option>
+                            <option value="quarter" data-i18n="form.urgency.quarter">Este trimestre</option>
+                            <option value="exploring" data-i18n="form.urgency.exploring">Solo explorando</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message" data-i18n="form.labels.message">Describe tu Negocio</label>
+                        <textarea id="message" name="message" rows="4" required
+                                  data-i18n-placeholder="form.placeholders.message"></textarea>
+                    </div>
+                    
+                    <div class="form-group checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="terms" name="terms" required>
+                            <span class="checkmark"></span>
+                            <span data-i18n="form.terms">
+                                Acepto términos y condiciones. Autorizo contacto comercial.
+                            </span>
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="btn-submit" id="submitBtn">
+                        <span class="btn-text" data-i18n="form.submit">Enviar Análisis GRATIS</span>
+                        <span class="btn-loading" style="display: none;">
+                            <span class="spinner"></span>
+                            <span data-i18n="form.sending">Enviando...</span>
+                        </span>
+                    </button>
+                </form>
+                
+                <div class="form-footer">
+                    <p data-i18n="form.footer.guarantee">
+                        <span class="guarantee-icon">🔒</span>
+                        100% Confidencial. Respuesta en menos de 2 horas.
+                    </p>
+                    <div class="form-benefits">
+                        <div class="benefit">
+                            <span class="benefit-icon">⚡</span>
+                            <span data-i18n="form.benefits.speed">Respuesta Rápida</span>
+                        </div>
+                        <div class="benefit">
+                            <span class="benefit-icon">🎯</span>
+                            <span data-i18n="form.benefits.custom">Estrategia Personalizada</span>
+                        </div>
+                        <div class="benefit">
+                            <span class="benefit-icon">💎</span>
+                            <span data-i18n="form.benefits.premium">Consultoría Premium</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section class="resources">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-i18n="resources.title">Recursos Gratuitos</h2>
+                <p class="section-subtitle" data-i18n="resources.subtitle">
+                    Guías y estrategias probadas para automatizar tu negocio
+                </p>
+            </div>
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <div class="resource-icon">📊</div>
+                    <h3 data-i18n="resources.automation.title">Guía de Automatización</h3>
+                    <p data-i18n="resources.automation.description">
+                        Framework completo para automatizar procesos de ventas y maximizar ROI.
+                        47 páginas de estrategias probadas.
+                    </p>
+                    <a href="assets/pdf/MELANO_INC_Automation_Guide_ES.pdf" 
+                       class="resource-download" target="_blank" data-lang="es">
+                        <span>📥</span>
+                        <span data-i18n="resources.download">Descargar PDF</span>
+                    </a>
+                    <a href="assets/pdf/MELANO_INC_Automation_Guide_EN.pdf" 
+                       class="resource-download" target="_blank" data-lang="en" style="display: none;">
+                        <span>📥</span>
+                        <span data-i18n="resources.download">Download PDF</span>
+                    </a>
+                </div>
+                
+                <div class="resource-card">
+                    <div class="resource-icon">🤖</div>
+                    <h3 data-i18n="resources.bots.title">Manual de Bots IA</h3>
+                    <p data-i18n="resources.bots.description">
+                        Cómo implementar bots de inversión y ventas. Casos de uso,
+                        configuración y optimización paso a paso.
+                    </p>
+                    <a href="assets/pdf/MELANO_INC_Bots_Manual_ES.pdf" 
+                       class="resource-download" target="_blank" data-lang="es">
+                        <span>📥</span>
+                        <span data-i18n="resources.download">Descargar PDF</span>
+                    </a>
+                    <a href="assets/pdf/MELANO_INC_Bots_Manual_EN.pdf" 
+                       class="resource-download" target="_blank" data-lang="en" style="display: none;">
+                        <span>📥</span>
+                        <span data-i18n="resources.download">Download PDF</span>
+                    </a>
+                </div>
+                
+                <div class="resource-card featured">
+                    <div class="resource-icon">💎</div>
+                    <h3 data-i18n="resources.masterclass.title">Masterclass Exclusiva</h3>
+                    <p data-i18n="resources.masterclass.description">
+                        "De 0 a $100K MRR con IA y Automatización"
+                        Video masterclass + template de implementación.
+                    </p>
+                    <a href="https://link.mercadopago.com/melanoinc" 
+                       class="resource-premium" target="_blank">
+                        <span>🚀</span>
+                        <span data-i18n="resources.masterclass.cta">Acceso Inmediato - $97</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="brand-logo">
+                        <span class="logo">🤖</span>
+                        <span class="brand-text">MELANO INC</span>
+                    </div>
+                    <p data-i18n="footer.description">
+                        IA • Automatización • Impacto<br>
+                        Sistemas que venden, invierten y escalan solos.
+                    </p>
+                    <div class="contact-info">
+                        <p>
+                            <strong>CEO:</strong> Bruno A. Melano<br>
+                            📧 contacto@brunomelano.com<br>
+                            📱 +54 9223 550-6595
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="link-group">
+                        <h4 data-i18n="footer.services.title">Servicios</h4>
+                        <ul>
+                            <li><a href="#" data-i18n="footer.services.bots">Bots de Inversión</a></li>
+                            <li><a href="#" data-i18n="footer.services.realestate">Real Estate Tech</a></li>
+                            <li><a href="#" data-i18n="footer.services.saas">SaaS & Automatización</a></li>
+                            <li><a href="#" data-i18n="footer.services.branding">Branding Premium</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="link-group">
+                        <h4 data-i18n="footer.company.title">Compañía</h4>
+                        <ul>
+                            <li><a href="#" data-i18n="footer.company.about">Acerca de</a></li>
+                            <li><a href="#" data-i18n="footer.company.results">Resultados</a></li>
+                            <li><a href="#" data-i18n="footer.company.contact">Contacto</a></li>
+                            <li><a href="#" data-i18n="footer.company.privacy">Privacidad</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="link-group">
+                        <h4 data-i18n="footer.contact.title">Contacto Directo</h4>
+                        <div class="contact-buttons">
+                            <a href="https://wa.me/5492235506595?text=Hola%20Bruno,%20quiero%20conocer%20más%20sobre%20MELANO%20INC" 
+                               class="contact-btn whatsapp" target="_blank">
+                                <span>💬</span>
+                                <span>WhatsApp</span>
+                            </a>
+                            <a href="mailto:contacto@brunomelano.com" class="contact-btn email">
+                                <span>📧</span>
+                                <span>Email</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 MELANO INC. Todos los derechos reservados.</p>
+                <div class="footer-badges">
+                    <span class="badge">🔒 SSL Secured</span>
+                    <span class="badge">🌍 Global Service</span>
+                    <span class="badge">⚡ 24/7 Support</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="modal-icon">✅</span>
+                <h3 data-i18n="modal.success.title">¡Mensaje Enviado!</h3>
+            </div>
+            <div class="modal-body">
+                <p data-i18n="modal.success.message">
+                    Gracias por tu interés. Recibirás tu análisis personalizado 
+                    en menos de 2 horas en tu email.
+                </p>
+                <p data-i18n="modal.success.whatsapp">
+                    También te contactaremos vía WhatsApp para agendar una llamada estratégica.
+                </p>
+            </div>
+            <div class="modal-actions">
+                <button class="btn-modal-close" data-i18n="modal.success.close">Cerrar</button>
+                <a href="https://wa.me/5492235506595?text=Hola%20Bruno,%20acabo%20de%20enviar%20el%20formulario%20para%20el%20análisis%20gratuito" 
+                   class="btn-modal-whatsapp" target="_blank">
+                    <span>💬</span>
+                    <span data-i18n="modal.success.whatsapp_cta">Ir a WhatsApp</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/config.js"></script>
+    <script src="assets/js/translations.js"></script>
+    <script src="assets/js/app.js"></script>
+</body>
+</html>

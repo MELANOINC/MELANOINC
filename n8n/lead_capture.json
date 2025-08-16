@@ -1,0 +1,307 @@
+{
+  "name": "MELANO INC - Lead Capture",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "melano_lead",
+        "responseMode": "responseNode",
+        "options": {
+          "cors": {
+            "allowedOrigins": "*"
+          }
+        }
+      },
+      "id": "webhook-node",
+      "name": "Webhook - Form Submit",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [240, 300],
+      "webhookId": "melano-lead-webhook"
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "name",
+              "value": "={{ $json.name }}"
+            },
+            {
+              "name": "email", 
+              "value": "={{ $json.email }}"
+            },
+            {
+              "name": "phone",
+              "value": "={{ $json.phone }}"
+            },
+            {
+              "name": "budget",
+              "value": "={{ $json.budget }}"
+            },
+            {
+              "name": "urgency",
+              "value": "={{ $json.urgency }}"
+            },
+            {
+              "name": "message",
+              "value": "={{ $json.message }}"
+            },
+            {
+              "name": "lang",
+              "value": "={{ $json.language || 'es' }}"
+            },
+            {
+              "name": "source",
+              "value": "={{ $json.source || 'landing_page' }}"
+            },
+            {
+              "name": "user_agent",
+              "value": "={{ $json.user_agent }}"
+            },
+            {
+              "name": "referrer", 
+              "value": "={{ $json.referrer }}"
+            },
+            {
+              "name": "url",
+              "value": "={{ $json.url }}"
+            },
+            {
+              "name": "timestamp",
+              "value": "={{ $json.timestamp }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "data-transform",
+      "name": "Transform Data",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3,
+      "position": [460, 300]
+    },
+    {
+      "parameters": {
+        "operation": "insert",
+        "schema": {
+          "__rl": true,
+          "value": "public",
+          "mode": "list"
+        },
+        "table": {
+          "__rl": true,
+          "value": "crm_clientes", 
+          "mode": "list"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "values": {
+            "name": "={{ $json.name }}",
+            "email": "={{ $json.email }}",
+            "phone": "={{ $json.phone }}",
+            "budget": "={{ $json.budget }}",
+            "urgency": "={{ $json.urgency }}",
+            "message": "={{ $json.message }}",
+            "lang": "={{ $json.lang }}",
+            "source": "={{ $json.source }}",
+            "user_agent": "={{ $json.user_agent }}",
+            "referrer": "={{ $json.referrer }}",
+            "url": "={{ $json.url }}"
+          }
+        }
+      },
+      "id": "supabase-insert",
+      "name": "Insert to Supabase",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [680, 300],
+      "credentials": {
+        "supabaseApi": {
+          "id": "supabase-credentials",
+          "name": "MELANO Supabase"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "={{ $vars.WABA_PHONE_NUMBER_ID }}",
+        "to": "={{ $vars.OWNER_WHATSAPP }}",
+        "messageType": "text",
+        "message": "🚀 *NUEVO LEAD - MELANO INC*\n\n👤 *Cliente:* {{ $('Transform Data').item.json.name }}\n📧 *Email:* {{ $('Transform Data').item.json.email }}\n📱 *WhatsApp:* {{ $('Transform Data').item.json.phone }}\n\n💰 *Presupuesto:* {{ $('Transform Data').item.json.budget }}\n⏰ *Urgencia:* {{ $('Transform Data').item.json.urgency }}\n🌐 *Idioma:* {{ $('Transform Data').item.json.lang }}\n\n📝 *Mensaje:*\n{{ $('Transform Data').item.json.message }}\n\n---\n📊 *Fuente:* {{ $('Transform Data').item.json.source }}\n🔗 *URL:* {{ $('Transform Data').item.json.url }}\n⏱️ *Timestamp:* {{ $('Transform Data').item.json.timestamp }}"
+      },
+      "id": "whatsapp-notification",
+      "name": "WhatsApp Notification",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [680, 120],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "whatsapp-credentials", 
+          "name": "MELANO WhatsApp"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://graph.facebook.com/v20.0/{{ $vars.WABA_PHONE_NUMBER_ID }}/messages",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer {{ $vars.WABA_TOKEN }}"
+            },
+            {
+              "name": "Content-Type", 
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "json",
+        "body": {
+          "messaging_product": "whatsapp",
+          "to": "={{ $('Transform Data').item.json.phone.replace(/[^0-9+]/g, '') }}",
+          "type": "text",
+          "text": {
+            "body": "¡Hola {{ $('Transform Data').item.json.name }}! 👋\n\nGracias por tu interés en MELANO INC. Recibimos tu solicitud de análisis gratuito.\n\n🤖 En menos de 2 horas recibirás:\n✅ Análisis personalizado de tu negocio\n✅ Estrategia de automatización\n✅ Propuesta de ROI proyectado\n\n💬 Te contactaré directamente para agendar una llamada estratégica.\n\n---\nBruno A. Melano\nCEO & Founder | MELANO INC\n📧 contacto@brunomelano.com"
+          }
+        }
+      },
+      "id": "whatsapp-client",
+      "name": "WhatsApp to Client", 
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [900, 180]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": {
+          "success": true,
+          "message": "Lead captured successfully",
+          "id": "={{ $('Insert to Supabase').item.json.id }}",
+          "timestamp": "={{ new Date().toISOString() }}"
+        }
+      },
+      "id": "webhook-response",
+      "name": "Success Response",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [900, 300]
+    },
+    {
+      "parameters": {
+        "operation": "insert",
+        "schema": {
+          "__rl": true,
+          "value": "public",
+          "mode": "list"
+        },
+        "table": {
+          "__rl": true,
+          "value": "crm_interactions",
+          "mode": "list"  
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "values": {
+            "client_id": "={{ $('Insert to Supabase').item.json.id }}",
+            "type": "whatsapp",
+            "content": "Welcome message sent automatically",
+            "status": "enviado"
+          }
+        }
+      },
+      "id": "log-interaction",
+      "name": "Log WhatsApp Interaction",
+      "type": "n8n-nodes-base.supabase", 
+      "typeVersion": 1,
+      "position": [1120, 180],
+      "credentials": {
+        "supabaseApi": {
+          "id": "supabase-credentials",
+          "name": "MELANO Supabase"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook - Form Submit": {
+      "main": [
+        [
+          {
+            "node": "Transform Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Transform Data": {
+      "main": [
+        [
+          {
+            "node": "Insert to Supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Insert to Supabase": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Notification",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "WhatsApp to Client",
+            "type": "main", 
+            "index": 0
+          },
+          {
+            "node": "Success Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp to Client": {
+      "main": [
+        [
+          {
+            "node": "Log WhatsApp Interaction",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "1",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "id": "melano-lead-capture",
+  "tags": [
+    {
+      "createdAt": "2025-01-27T10:00:00.000Z", 
+      "updatedAt": "2025-01-27T10:00:00.000Z",
+      "id": "melano-tag",
+      "name": "MELANO INC"
+    }
+  ]
+}
