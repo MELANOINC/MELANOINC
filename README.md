@@ -1,283 +1,87 @@
-# 🤖 MELANO INC - Bilingual Funnel System
+# MELANO INC — AI. Automation. Impact. | IA. Automatización. Impacto.
+I design, build, and ship automated acquisition funnels, 24/7 SaaS, and trading bots that close clients and generate cashflow. If you need to sell high‑ticket with AI or raise capital, I deliver the full stack: strategy, assets, code, and pitch.
 
-![MELANO INC](https://img.shields.io/badge/MELANO-INC-FFD700?style=for-the-badge&logo=robot&logoColor=black)
-![Status](https://img.shields.io/badge/STATUS-Production%20Ready-00D400?style=for-the-badge)
-![Version](https://img.shields.io/badge/VERSION-1.0.0-blue?style=for-the-badge)
+Construyo funnels de venta automatizados, SaaS 24/7 y bots de inversión que cierran clientes y generan cashflow. Si querés vender high‑ticket con IA o levantar capital, entrego estrategia, activos, código y pitch listos para inversores.
 
-**IA • Automatización • Impacto**  
-Sistemas que venden, invierten y escalan solos. **Cashflow desde día 1** con ROI medible en ≤30 días.
-
-## 🎯 Sistema Completo
-
-### ✨ Características Principales
-- **🌍 Bilingüe** - Español/English con switch dinámico
-- **🎨 Diseño Premium** - Tema negro/dorado, animaciones avanzadas
-- **📱 Responsive** - Optimizado para todos los dispositivos
-- **🤖 Automatización Total** - n8n + Supabase + WhatsApp Cloud API
-- **📊 Analytics** - Tracking completo de conversiones
-- **🔒 Seguridad** - RLS, validaciones, sanitización
-- **💳 Stripe Checkout** - Pagos en 1 click
-- **📧 Email Sequences** - Onboarding automatizado
-- **💰 Revenue Analytics** - Métricas en tiempo real
-- **🎯 Freemium to Premium** - Conversión optimizada
-
-### 🏗️ Arquitectura
-```
-Landing → Stripe Checkout → Subscription → Email Sequences → Revenue Analytics
-    ↓           ↓              ↓                ↓               ↓
-Form Submit → Payment → User Onboarding → Conversion → Real-time Metrics
-```
-
-## 🚀 Deploy Instructions
-
-### 1️⃣ Landing Page Deploy
-```bash
-# Build static files
-npm run build
-
-# Deploy to Netlify/Vercel
-# Set domain: brunomelano.com
-# Update assets/js/config.js → webhookURL after n8n setup
-```
-
-### 2️⃣ Supabase Setup (Extended)
-```sql
--- Execute supabase/schema.sql in SQL Editor
--- Execute supabase/subscription_schema.sql for revenue tracking
--- Save SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY
-```
-
-### 3️⃣ Stripe Configuration
-```bash
-# Stripe Dashboard Setup:
-# 1. Create products: Starter ($0), Pro ($297), Enterprise ($997)
-# 2. Get publishable key and secret key
-# 3. Configure webhooks → n8n endpoint
-# 4. Update config.js with real Stripe keys
-```
-
-### 4️⃣ n8n Deployment (Extended)
-```bash
-# Import workflows:
-# - n8n/lead_capture.json
-# - n8n/waba_inbound.json
-# - n8n/email_sequences.json (NEW)
-
-# Environment Variables:
-WABA_TOKEN=your_whatsapp_token
-WABA_PHONE_NUMBER_ID=your_phone_id
-SUPABASE_URL=your_supabase_url
-SUPABASE_SERVICE_ROLE=your_service_key
-OWNER_WHATSAPP=+5492235506595
-VERIFY_TOKEN=melano-verify-token
-STRIPE_SECRET_KEY=your_stripe_secret
-SENDGRID_API_KEY=your_sendgrid_key
-
-# Deploy with HTTPS: https://n8n.YOUR-DOMAIN.com
-```
-
-### 5️⃣ WhatsApp Cloud API Setup
-```
-Callback URL: https://n8n.YOUR-DOMAIN.com/webhook/waba_inbound
-Verify Token: melano-verify-token
-Events: messages, message_status, message_template_status_update
-```
-
-## 💰 **NUEVAS FUNCIONALIDADES - CASHFLOW SYSTEM**
-
-### ✅ **Stripe Checkout en 1 Click**
-- 3 planes: Starter (Free), Pro ($297), Enterprise ($997)
-- Onboarding automático post-pago
-- Webhooks para sincronización en tiempo real
-
-### ✅ **Email Sequences Automatizadas**
-- **Welcome Series** → Onboarding nuevos usuarios
-- **Trial Ending** → Conversión freemium → premium
-- **Conversion Series** → Upgrades y retención
-- Templates personalizables con variables dinámicas
-
-### ✅ **Revenue Analytics en Tiempo Real**
-- **MRR/ARR** tracking automático
-- **Churn Rate** y Customer Lifetime Value
-- **Conversion Rates** por plan
-- Dashboard live con actualización cada 30s
-
-### ✅ **Sistema Freemium Optimizado**
-- Plan Starter gratuito con limitaciones
-- Progresión natural hacia planes pagos
-- Triggers automáticos para upgrade
-- Métricas de conversión detalladas
-
-## 🧪 Testing
-
-### Validación Pre-Deploy
-```bash
-npm run validate
-```
-
-### Test Completo
-```bash
-# Set environment variables first
-export WEBHOOK_URL="https://n8n.YOUR-DOMAIN.com/webhook/melano_lead"
-export WABA_TOKEN="your_token"
-export WABA_PHONE_NUMBER_ID="your_id"
-export SUPABASE_URL="your_url"
-export SUPABASE_SERVICE_ROLE="your_key"
-export STRIPE_SECRET_KEY="your_stripe_key"
-
-npm run test
-```
-
-### Test Stripe Integration
-```bash
-# Test checkout creation
-curl -X POST "https://n8n.YOUR-DOMAIN.com/api/create-checkout-session" \
-  -H "Content-Type: application/json" \
-  -d '{"plan": "pro", "amount": "29700", "currency": "usd"}'
-
-# Test webhook endpoint
-curl -X POST "https://n8n.YOUR-DOMAIN.com/webhook/stripe-webhook" \
-  -H "Content-Type: application/json" \
-  -d '{"type": "customer.subscription.created", "data": {...}}'
-```
-
-### Test Manual WhatsApp
-```bash
-curl -X POST "https://graph.facebook.com/v20.0/$WABA_PHONE_NUMBER_ID/messages" \
-  -H "Authorization: Bearer $WABA_TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "messaging_product": "whatsapp",
-    "to": "+5492235506595",
-    "type": "text",
-    "text": {"body": "🧪 Test OK - MELANO INC"}
-  }'
-```
-
-### Test Supabase Direct
-```bash
-curl -X POST "$SUPABASE_URL/rest/v1/crm_clientes" \
-  -H "apikey: $SUPABASE_SERVICE_ROLE" \
-  -H "Authorization: Bearer $SUPABASE_SERVICE_ROLE" \
-  -H "Content-Type: application/json" \
-  -H "Prefer: return=representation" \
-  -d '{
-    "name": "Test User",
-    "email": "test@demo.com",
-    "phone": "+5492235506595",
-    "budget": ">20000",
-    "urgency": "now",
-    "message": "Test directo",
-    "lang": "es"
-  }'
-```
-
-## 📁 Estructura del Proyecto
-
-```
-MELANO-INC-FUNNEL/
-├── index.html                 # Landing page principal
-├── assets/
-│   ├── css/
-│   │   └── styles.css         # Estilos principales (negro/dorado)
-│   ├── js/
-│   │   ├── config.js          # Configuración y constantes
-│   │   ├── translations.js    # Traducciones ES/EN
-│   │   └── app.js            # Lógica principal
-│   └── pdf/
-│       ├── MELANO_INC_Automation_Guide_ES.pdf
-│       ├── MELANO_INC_Automation_Guide_EN.pdf
-│       ├── MELANO_INC_Bots_Manual_ES.pdf
-│       └── MELANO_INC_Bots_Manual_EN.pdf
-├── supabase/
-│   └── schema.sql            # Schema completo del CRM
-├── n8n/
-│   ├── lead_capture.json     # Workflow captura de leads
-│   └── waba_inbound.json     # Webhook WhatsApp entrante
-├── scripts/
-│   ├── validate.js           # Validación pre-deploy
-│   └── test.js              # Tests de integración
-└── README.md
-```
-
-## 🎨 Design System
-
-### Colores
-- **Primary Black**: `#0f0f0f`
-- **Secondary Black**: `#1a1a1a` 
-- **Accent Black**: `#2d2d2d`
-- **Gold Primary**: `#ffd700`
-- **Gold Secondary**: `#ffed4e`
-- **Gold Dark**: `#b8860b`
-
-### Typography
-- **Font**: Inter (Google Fonts)
-- **Weights**: 300, 400, 500, 600, 700, 800, 900
-
-### Components
-- **Gradient Gold**: `linear-gradient(135deg, #ffd700 0%, #b8860b 100%)`
-- **Shadow Gold**: `0 0 20px rgba(255, 215, 0, 0.3)`
-- **Animations**: Floating cards, hover effects, micro-interactions
-
-## 🔧 Configuración
-
-### Variables Críticas
-```javascript
-// assets/js/config.js
-window.MELANO_CONF = {
-    webhookURL: "https://n8n.YOUR-DOMAIN.com/webhook/melano_lead", // ⚠️ UPDATE!
-    contact: {
-        phone: "+5492235506595",
-        email: "contacto@brunomelano.com",
-        whatsapp: "https://wa.me/5492235506595"
-    },
-    checkoutURL: "https://link.mercadopago.com/melanoinc"
-};
-```
-
-### Supabase Tables
-- **crm_clientes** - Leads principales
-- **crm_interactions** - Historial de comunicaciones
-- **crm_analytics** - Eventos y métricas
-
-### n8n Workflows
-- **Lead Capture** - Formulario → Supabase → WhatsApp
-- **WhatsApp Inbound** - Mensajes entrantes → Notificaciones
-
-## ✅ Checklist Final
-
-### Pre-Deploy
-- [ ] Todos los archivos validados (`npm run validate`)
-- [ ] PDFs subidos al directorio `assets/pdf/`
-- [ ] Dominio configurado: brunomelano.com
-- [ ] n8n deployado con HTTPS
-- [ ] Variables de entorno configuradas
-
-### Post-Deploy
-- [ ] Landing online y funcionando
-- [ ] Form submit → Supabase ✅
-- [ ] Notificaciones WhatsApp ✅
-- [ ] Callback WhatsApp Cloud API verificado
-- [ ] PDFs descargables
-- [ ] Switch de idiomas funcionando
-- [ ] Responsive en móviles
-
-### Tests Finales
-- [ ] Submit formulario desde landing
-- [ ] Recibir WhatsApp en +5492235506595
-- [ ] Verificar data en Supabase
-- [ ] Test downloads PDFs
-- [ ] Link MercadoPago funcional
-
-## 📞 Contacto
-
-**Bruno A. Melano**  
-CEO & Founder | MELANO INC  
-📧 contacto@brunomelano.com  
-📱 +54 9223 550-6595  
-🌐 https://brunomelano.com  
+[Book a call →](https://cal.com/brunomelano) • [Top skills](#-top-skills--herramientas-clave) • [Projects](#-favorite-projects--proyectos-destacados) • [Tech stack](#-core-stack)
 
 ---
 
-**🤖 MELANO INC - IA • Automatización • Impacto**  
-*Sistemas que venden, invierten y escalan solos.*
+## 🚀 Top Skills / Herramientas Clave
+- Bots de inversión (Scalping, Arbitraje, Tendencias)
+- SaaS automatizados con IA (Melania, Alexia, Alenya, Titan)
+- Real Estate Tech (tokenización, automatización de marketing, captación de leads)
+- Marketing de Alto Impacto (Meta Ads, Funnels, Automatización en WhatsApp/Telegram)
+- Infraestructura Tech (Python, FastAPI, Next.js, Supabase, n8n, Docker)
+
+---
+
+## ⭐ Favorite Projects / Proyectos Destacados
+1. Melano Bot Hub — Plataforma SaaS de bots de inversión y automatización  
+   🌐 https://MelanoBotHub.ai
+2. Melania Bot™ — Asistente IA premium para inmobiliarias  
+   🌐 https://brunomelano.com/melania
+3. Titan Bot™ — Bot de trading automatizado (scalping)  
+   🌐 https://brunomelano.com/titan
+4. Melano Local IA — SaaS para comercios locales  
+   🌐 https://brunomelano.com/local
+5. Genia Project — AI disruptiva estilo Steve Jobs  
+   🌐 https://brunomelano.com
+
+---
+
+## What I’m shipping now / Qué estoy entregando ahora
+- Premium web funnel + Melania Bot para ventas high‑ticket automatizadas
+- SaaS de producción (Python/Node.js) con auth, billing y observabilidad
+- TradingView → señales → bots y dashboards (listo para ejecución)
+- Demo + narrativa + deck listos para levantar capital
+
+---
+
+## Solutions I deliver / Soluciones que entrego
+- AI Funnel: posicionamiento, oferta, landing, chatbot, CRM, tráfico pago
+- SaaS Architecture: APIs, datos, workers, suscripciones y pipelines de deploy
+- Quant/Signals: integraciones con TradingView, alertas, reglas de riesgo y bots
+- Capital Stack: pitch, demo en vivo, métricas y data room para inversores
+
+---
+
+## 🧠 Core stack
+- Python: FastAPI, Pydantic, AsyncIO, pandas
+- Node.js: Next.js, TypeScript, Express/Fastify
+- Data/Infra: PostgreSQL, Redis, Prisma, Docker
+- Cloud & Edge: Cloudflare, Fly.io, Vercel
+- Automation & Data: Supabase, n8n, WhatsApp Cloud API, Telegram Bots
+- Trading: TradingView Pine Script, webhooks, execution bots
+
+---
+
+## 📊 Outcomes & Metrics
+- +400% ROI en campañas de inversión en 30 días
+- 10K+ leads generados con funnels automatizados
+- SaaS bots vendidos en +5 países
+- Escalado de real estate tech con inversores en LatAm y EE.UU.
+
+---
+
+## 🌍 Social / Contact Links
+- Website: https://melanoinc.com • https://brunomelano.com
+- X/Twitter: https://x.com/brunomelano
+- LinkedIn: https://linkedin.com/in/brunomelano
+- Email: contacto@brunomelano.com
+- Calendar: https://cal.com/brunomelano
+
+---
+
+## 🎯 Primary CTA / Llamado a la acción
+Book a Call → https://cal.com/brunomelano
+
+---
+
+## Quick stats
+![GitHub Stats](https://github-readme-stats.vercel.app/api?username=MELANOINC&show_icons=true&theme=transparent)
+![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=MELANOINC&layout=compact&theme=transparent)
+
+---
+
+Bilingual (EN/ES) — internacional, claro y premium. Let’s build something that sells itself.
