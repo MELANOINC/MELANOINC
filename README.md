@@ -96,5 +96,6 @@ Email:
 [contacto@melanoinc.com](mailto:contacto@melanoinc.com)
 
 Schedule a Call:
-https://cal.com/brunomelano
+https://calendly.com/llamada-con-bruno
+
 Bilingual (EN/ES) — internacional, claro y premium. Let’s build something that sells itself.
