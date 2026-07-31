@@ -1,87 +1,136 @@
-# MELANO INC — AI. Automation. Impact. | IA. Automatización. Impacto.
-I design, build, and ship automated acquisition funnels, 24/7 SaaS, and trading bots that close clients and generate cashflow. If you need to sell high‑ticket with AI or raise capital, I deliver the full stack: strategy, assets, code, and pitch.
+# Bruno A. Melano
 
-Construyo funnels de venta automatizados, SaaS 24/7 y bots de inversión que cierran clientes y generan cashflow. Si querés vender high‑ticket con IA o levantar capital, entrego estrategia, activos, código y pitch listos para inversores.
+### CEO & Founder @ MELANO INC
 
-[Book a call →](https://cal.com/brunomelano) • [Top skills](#-top-skills--herramientas-clave) • [Projects](#-favorite-projects--proyectos-destacados) • [Tech stack](#-core-stack)
+Building AI-powered commercial systems, automation platforms, and real estate technology.
 
----
-
-## 🚀 Top Skills / Herramientas Clave
-- Bots de inversión (Scalping, Arbitraje, Tendencias)
-- SaaS automatizados con IA (Melania, Alexia, Alenya, Titan)
-- Real Estate Tech (tokenización, automatización de marketing, captación de leads)
-- Marketing de Alto Impacto (Meta Ads, Funnels, Automatización en WhatsApp/Telegram)
-- Infraestructura Tech (Python, FastAPI, Next.js, Supabase, n8n, Docker)
+Based in Argentina 🇦🇷
 
 ---
 
-## ⭐ Favorite Projects / Proyectos Destacados
-1. Melano Bot Hub — Plataforma SaaS de bots de inversión y automatización  
-   🌐 https://MelanoBotHub.ai
-2. Melania Bot™ — Asistente IA premium para inmobiliarias  
-   🌐 https://brunomelano.com/melania
-3. Titan Bot™ — Bot de trading automatizado (scalping)  
-   🌐 https://brunomelano.com/titan
-4. Melano Local IA — SaaS para comercios locales  
-   🌐 https://brunomelano.com/local
-5. Genia Project — AI disruptiva estilo Steve Jobs  
-   🌐 https://brunomelano.com
+## About Me
+
+I'm the founder of MELANO INC, a technology company focused on artificial intelligence, automation, commercial infrastructure, and real estate technology.
+
+My work centers around designing systems that automate lead generation, qualification, follow-up, conversion, and operational workflows.
+
+Current focus:
+
+* AI Commercial Operating Systems
+* Real Estate SaaS
+* Business Automation
+* Agentic AI Workflows
+* Data-Driven Sales Infrastructure
 
 ---
 
-## What I’m shipping now / Qué estoy entregando ahora
-- Premium web funnel + Melania Bot para ventas high‑ticket automatizadas
-- SaaS de producción (Python/Node.js) con auth, billing y observabilidad
-- TradingView → señales → bots y dashboards (listo para ejecución)
-- Demo + narrativa + deck listos para levantar capital
+## Products
+
+### MELANIA
+
+AI-powered Commercial Operating System.
+
+Features:
+
+* CRM Automation
+* WhatsApp AI
+* Lead Scoring
+* Follow-Up Automation
+* Executive Analytics
 
 ---
 
-## Solutions I deliver / Soluciones que entrego
-- AI Funnel: posicionamiento, oferta, landing, chatbot, CRM, tráfico pago
-- SaaS Architecture: APIs, datos, workers, suscripciones y pipelines de deploy
-- Quant/Signals: integraciones con TradingView, alertas, reglas de riesgo y bots
-- Capital Stack: pitch, demo en vivo, métricas y data room para inversores
+### LUXIA
+
+Real Estate SaaS Platform.
+
+Features:
+
+* Lead Capture
+* Qualification
+* Appointment Scheduling
+* Pipeline Management
+* Post-Sales Automation
 
 ---
 
-## 🧠 Core stack
-- Python: FastAPI, Pydantic, AsyncIO, pandas
-- Node.js: Next.js, TypeScript, Express/Fastify
-- Data/Infra: PostgreSQL, Redis, Prisma, Docker
-- Cloud & Edge: Cloudflare, Fly.io, Vercel
-- Automation & Data: Supabase, n8n, WhatsApp Cloud API, Telegram Bots
-- Trading: TradingView Pine Script, webhooks, execution bots
+### TITAN
+
+Trading & Analytics Infrastructure.
+
+Features:
+
+* Market Signals
+* Risk Management
+* Execution Systems
+* Analytics Dashboards
 
 ---
 
-## 📊 Outcomes & Metrics
-- +400% ROI en campañas de inversión en 30 días
-- 10K+ leads generados con funnels automatizados
-- SaaS bots vendidos en +5 países
-- Escalado de real estate tech con inversores en LatAm y EE.UU.
+## Tech Stack
+
+### Languages
+
+* Python
+* TypeScript
+* JavaScript
+* SQL
+
+### Backend
+
+* FastAPI
+* Node.js
+* Express
+* PostgreSQL
+
+### Frontend
+
+* Next.js
+* React
+* Tailwind CSS
+
+### Infrastructure
+
+* Docker
+* Supabase
+* Cloudflare
+* Vercel
+* Railway
+
+### Automation
+
+* n8n
+* WhatsApp Cloud API
+* Telegram Bots
+* OpenAI API
 
 ---
 
-## 🌍 Social / Contact Links
-- Website: https://melanoinc.com • https://brunomelano.com
-- X/Twitter: https://x.com/brunomelano
-- LinkedIn: https://linkedin.com/in/brunomelano
-- Email: contacto@brunomelano.com
-- Calendar: https://cal.com/brunomelano
+## Current Mission
+
+Building scalable AI systems that help businesses acquire customers, automate operations, and increase revenue.
 
 ---
 
-## 🎯 Primary CTA / Llamado a la acción
-Book a Call → https://cal.com/brunomelano
+## Connect
+
+🌐 https://melanoinc.com
+
+🌐 https://luxia.melanoinc.com
+
+🌐 https://alenya.melanoinc.com
+
+🌐 https://notorius.melanoinc.com
+
+🌐 https://brunomelano.com
+
+📧 [contacto@brunomelano.com](mailto:contacto@brunomelano.com)
+
+💼 https://linkedin.com/in/brunomelano
+
+📅 [https://calendly.com/brunomelano/diagnostico-luxia-real-estate](https://calendly.com/brunomelano/llamada-con-bruno?back=1&month=2026-06)
 
 ---
 
-## Quick stats
-![GitHub Stats](https://github-readme-stats.vercel.app/api?username=MELANOINC&show_icons=true&theme=transparent)
-![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=MELANOINC&layout=compact&theme=transparent)
+> MELANO INC — AI. Automation. Impact.
 
----
-
-Bilingual (EN/ES) — internacional, claro y premium. Let’s build something that sells itself.
