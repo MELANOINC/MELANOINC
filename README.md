@@ -116,13 +116,19 @@ Building scalable AI systems that help businesses acquire customers, automate op
 
 🌐 https://melanoinc.com
 
+🌐 https://luxia.melanoinc.com
+
+🌐 https://alenya.melanoinc.com
+
+🌐 https://notorius.melanoinc.com
+
 🌐 https://brunomelano.com
 
 📧 [contacto@brunomelano.com](mailto:contacto@brunomelano.com)
 
 💼 https://linkedin.com/in/brunomelano
 
-📅 [https://cal.com/brunomelano](https://calendly.com/brunomelano/llamada-con-bruno?back=1&month=2026-06)
+📅 [https://calendly.com/brunomelano/diagnostico-luxia-real-estate](https://calendly.com/brunomelano/llamada-con-bruno?back=1&month=2026-06)
 
 ---
 
