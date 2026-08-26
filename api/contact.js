@@ -27,7 +27,7 @@ export default async function handler(req, res) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Origin": "https://www.melanoinc.online",
+        "Origin": "https://melanoinc.com",
         "X-Idempotency-Key": text(req.headers["x-idempotency-key"], 200) || `web-${Date.now()}`,
       },
       body: JSON.stringify({
