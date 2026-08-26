@@ -5,7 +5,7 @@
   "main": "index.html",
   "scripts": {
     "dev": "npx vite --host",
-    "build": "npx vite build",
+    "build": "npx vite build && mkdir -p dist/privacidad && cp privacidad/index.html dist/privacidad/index.html && cp robots.txt sitemap.xml dist/",
     "preview": "npx vite preview",
     "serve": "npx serve dist",
     "validate": "node scripts/validate.js",
