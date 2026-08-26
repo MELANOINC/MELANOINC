@@ -1,7 +1,7 @@
 {
-  "name": "melano-inc-funnel",
+  "name": "melano-inc-corporate",
   "version": "1.0.0",
-  "description": "MELANO INC - Bilingual Funnel (ES/EN) with n8n + Supabase Integration",
+  "description": "MELANO INC corporate website — AI, automation, revenue systems and real estate technology.",
   "main": "index.html",
   "scripts": {
     "dev": "npx vite --host",
@@ -13,25 +13,23 @@
   },
   "keywords": [
     "melano-inc",
+    "artificial-intelligence",
     "automation",
-    "ai",
-    "funnel",
-    "bilingual",
-    "n8n",
-    "supabase",
-    "whatsapp"
+    "revenue-systems",
+    "real-estate-tech",
+    "saas"
   ],
-  "author": "Bruno A. Melano <contacto@brunomelano.com>",
+  "author": "MELANO INC",
   "license": "MIT",
   "devDependencies": {
     "vite": "^6.4.3"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/melanoinc/funnel.git"
+    "url": "https://github.com/MELANOINC/MELANOINC.git"
   },
-  "homepage": "https://brunomelano.com",
+  "homepage": "https://melanoinc.com",
   "engines": {
-    "node": ">=18.0.0"
+    "node": "24.x"
   }
 }
