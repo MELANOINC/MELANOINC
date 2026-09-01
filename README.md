@@ -28,5 +28,3 @@ Focused on:
 ---
 
 **MELANO INC — AI. Automation. Impact.**
-
-
