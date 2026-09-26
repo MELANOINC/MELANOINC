@@ -1,0 +1,29 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-forwarded-host",
+          "value": "brunomelano.tech"
+        }
+      ],
+      "destination": "https://melanoinc.com/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-forwarded-host",
+          "value": "www.brunomelano.tech"
+        }
+      ],
+      "destination": "https://melanoinc.com/:path*",
+      "permanent": true
+    }
+  ]
+}
