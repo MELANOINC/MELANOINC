@@ -17,6 +17,11 @@ export default async function handler(req, res) {
   const phone = text(body.phone || body.whatsapp || body.telefono, 80);
   const company = text(body.company, 200);
   const message = text(body.message || body.intent || body.intencion, 1000);
+  const consent = body.consent === true || body.consent === "true";
+
+  if (!consent) {
+    return res.status(400).json({ error: "consent_required" });
+  }
 
   if (!name || (!email && !phone)) {
     return res.status(400).json({ error: "name_and_contact_required" });
@@ -36,6 +41,7 @@ export default async function handler(req, res) {
         phone,
         company,
         message,
+        consent,
         website: text(body.website, 200),
         source_path: text(body.source_path, 500),
         referrer: text(body.referrer, 500),
